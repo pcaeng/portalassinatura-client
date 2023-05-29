@@ -1,0 +1,25 @@
+.main {
+    padding-bottom: 24px;
+    background-image: url('../images//content-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+    min-height: calc(100vh - 24px - 89px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-primary {
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    outline: none;
+    padding: 15px 80px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 22px;
+    color: #000;
+    cursor: pointer;
+}
