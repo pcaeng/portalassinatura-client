@@ -44,3 +44,20 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.panel-footer {
+    padding: 0px 24px 24px 24px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.panel-footer .space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.panel-footer .flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

@@ -23,3 +23,36 @@
     color: #000;
     cursor: pointer;
 }
+
+.button-secondary {
+    background: black;
+    border-radius: 30px;
+    border: 1px solid black;
+    outline: none;
+    padding: 15px 80px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 22px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-documentos {
+    background: black;
+    border-radius: 32px;
+    border: 1px solid white;
+    outline: none;
+    padding: 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button-documentos-container {
+    display: flex;
+    justify-content: space-between;
+}
