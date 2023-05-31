@@ -16,6 +16,7 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/header.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
@@ -24,6 +25,7 @@
     <link rel="stylesheet" href="./assets/css/icons.css" />
     <link rel="stylesheet" href="./assets/css/form.css" />
   </head>
+
   <body>
     <header class="header">
       <img
@@ -38,10 +40,10 @@
     </header>
 
     <main class="main">
-      <div id="panel-step-1" class="panel-container">
-        <div class="panel panel-primary">
-          <div class="panel-title">Apresentação</div>
-          <div class="panel-body">
+      <div id="panel-step-1" class="panel">
+        <div class="panel__container panel-primary">
+          <div class="panel__title">Apresentação</div>
+          <div class="panel__body">
             Bem-vindo ao <strong>Portal de Assinatura</strong> fácil e seguro!
             <br />
             <br />
@@ -57,7 +59,7 @@
             <br />
             <strong>Vamos começar!</strong>
             <br />
-            <div class="pannel-button">
+            <div class="panel__button">
               <button class="button-primary" onclick="goToSecondStep()">
                 Próximo
               </button>
@@ -66,18 +68,18 @@
         </div>
       </div>
 
-      <div id="panel-step-2" class="panel-container" hidden>
-        <div class="panel panel-primary">
-          <div class="panel-title">Documentos</div>
-          <div class="panel-body">
+      <div id="panel-step-2" class="panel" hidden>
+        <div class="panel__container panel-primary">
+          <div class="panel__title">Documentos</div>
+          <div class="panel__body">
             Para cada documento, selecione o <strong>arquivo</strong>, informe o
             <strong>tipo</strong> e o <strong>nome</strong>.
             <br />
             <br />
-            <form class="form-cartao" novalidate>
+            <form novalidate>
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="TIPO DO DOCUMENTO"
@@ -87,7 +89,7 @@
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="NOME DO DOCUMENTO"
@@ -97,7 +99,7 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap">
-                  <button class="button-documentos">Selecione o arquivo</button>
+                  <button class="file-button">Selecione o arquivo</button>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -111,7 +113,7 @@
 
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="TIPO DO DOCUMENTO"
@@ -121,7 +123,7 @@
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="NOME DO DOCUMENTO"
@@ -131,7 +133,7 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap">
-                  <button class="button-documentos">Selecione o arquivo</button>
+                  <button class="file-button">Selecione o arquivo</button>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -145,7 +147,7 @@
 
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="TIPO DO DOCUMENTO"
@@ -155,7 +157,7 @@
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="NOME DO DOCUMENTO"
@@ -165,7 +167,7 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap">
-                  <button class="button-documentos">Selecione o arquivo</button>
+                  <button class="file-button">Selecione o arquivo</button>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -179,7 +181,7 @@
             </form>
             <br />
             <div class="row">
-              <div class="button-documentos-container">
+              <div class="button__container">
                 <button class="button-secondary" onclick="goToFirstStep()">
                   Voltar
                 </button>
@@ -192,46 +194,52 @@
         </div>
       </div>
 
-      <div id="panel-step-3" class="panel-container" hidden>
-        <div class="panel panel-primary">
-          <div class="panel-title">Responsáveis pelas assinaturas</div>
-          <div class="panel-body">
-            <form class="form-cartao" novalidate>
+      <div id="panel-step-3" class="panel" hidden>
+        <div class="panel__container panel-primary">
+          <div class="panel__title">Responsáveis pelas assinaturas</div>
+          <div class="panel__body">
+            <form novalidate>
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="user-icon">
                     <input
                       class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
+                      placeholder="NOME DO ASSINANTE"
+                      name="nomeAssinante"
                     />
                   </label>
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="email-icon">
                     <input
                       class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
+                      placeholder="E-MAIL"
+                      name="email"
                     />
                   </label>
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
-                    />
+                  <label class="cpf-icon">
+                    <input class="input-primary" placeholder="CPF" name="cpf" />
                   </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="calendar-icon">
+                    <input
+                      class="input-primary"
+                      placeholder="DATA DE NASCIMENTO"
+                      name="dataNascimento"
+                    />
+                  </label>
+                </div>
+
+                <div class="col-md-4 order-first input-wrap">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="TIPO DO DOCUMENTO"
@@ -240,18 +248,8 @@
                   </label>
                 </div>
 
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="NOME DO DOCUMENTO"
-                      name="nomeDocumento"
-                    />
-                  </label>
-                </div>
-
                 <div class="col-md-2 order-first input-wrap">
-                  <button class="button-documentos">Selecione o arquivo</button>
+                  <button class="file-button">Selecione o arquivo</button>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -265,39 +263,45 @@
               <br /><br />
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="user-icon">
                     <input
                       class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
+                      placeholder="NOME DO ASSINANTE"
+                      name="nomeAssinante"
                     />
                   </label>
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="email-icon">
                     <input
                       class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
+                      placeholder="E-MAIL"
+                      name="email"
                     />
                   </label>
                 </div>
 
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
-                    />
+                  <label class="cpf-icon">
+                    <input class="input-primary" placeholder="CPF" name="cpf" />
                   </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
+                  <label class="calendar-icon">
+                    <input
+                      class="input-primary"
+                      placeholder="DATA DE NASCIMENTO"
+                      name="dataNascimento"
+                    />
+                  </label>
+                </div>
+
+                <div class="col-md-4 order-first input-wrap">
+                  <label class="document-icon">
                     <input
                       class="input-primary"
                       placeholder="TIPO DO DOCUMENTO"
@@ -306,18 +310,8 @@
                   </label>
                 </div>
 
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="card-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="NOME DO DOCUMENTO"
-                      name="nomeDocumento"
-                    />
-                  </label>
-                </div>
-
                 <div class="col-md-2 order-first input-wrap">
-                  <button class="button-documentos">Selecione o arquivo</button>
+                  <button class="file-button">Selecione o arquivo</button>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -331,7 +325,7 @@
             </form>
             <br /><br />
             <div class="row">
-              <div class="button-documentos-container">
+              <div class="button__container">
                 <button class="button-secondary" onclick="goToSecondStep()">
                   Voltar
                 </button>
@@ -346,8 +340,7 @@
     </main>
 
     <footer>
-      @ 2023 PCA Engenharia de Software Ltda. - All Rights Reserved - Version
-      1.0.0
+      @ 2023 PCA Engenharia de Software Ltda. - All Rights Reserved - Version 1.0.0
     </footer>
 
     <script defer="defer" src="./assets/js/panel.js"></script>

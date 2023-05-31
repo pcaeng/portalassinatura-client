@@ -38,7 +38,12 @@
     cursor: pointer;
 }
 
-.button-documentos {
+.button__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-button {
     background: black;
     border-radius: 32px;
     border: 1px solid white;
@@ -50,9 +55,4 @@
     line-height: 15px;
     color: #fff;
     cursor: pointer;
-}
-
-.button-documentos-container {
-    display: flex;
-    justify-content: space-between;
 }

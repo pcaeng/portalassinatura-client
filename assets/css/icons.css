@@ -1,4 +1,4 @@
-.card-icon:before {
+.document-icon:before {
     content: "";
     background: url("../icons/document.png") center / contain no-repeat;
 }
@@ -17,4 +17,21 @@
     display: grid;
     width: 100%;
     height: 100%;
+}
+
+.email-icon:before {
+    content: "";
+    background: url("../icons/email.png") center / contain no-repeat;
+}
+.user-icon:before {
+    content: "";
+    background: url("../icons/user.png") center / contain no-repeat;
+}
+.cpf-icon:before {
+    content: "";
+    background: url("../icons/cpf.png") center / contain no-repeat;
+}
+.calendar-icon:before {
+    content: "";
+    background: url("../icons/calendar.png") center / contain no-repeat;
 }
