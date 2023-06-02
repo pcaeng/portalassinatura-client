@@ -49,3 +49,10 @@ label:before {
     bottom: 0;
     width: 21px;
 }
+
+.input-modal {
+    padding: 16px 16px 16px 48px;
+    border: none;
+    text-transform: uppercase;
+    border: 1px solid black;
+}

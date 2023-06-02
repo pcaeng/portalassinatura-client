@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/icons.css" />
     <link rel="stylesheet" href="./assets/css/form.css" />
+    <link rel="stylesheet" href="./assets/css/load.css" />
+    <link rel="stylesheet" href="./assets/css/modal.css" />
   </head>
 
   <body>
@@ -70,7 +72,10 @@
 
       <div id="panel-step-2" class="panel" hidden>
         <div class="panel__container panel-primary">
-          <div class="panel__title">Documentos</div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="panel__title">Documentos</div>
+            <div class="config-icon" onclick="showSettings()"></div>
+          </div>
           <div class="panel__body">
             Para cada documento, selecione o <strong>arquivo</strong>, informe o
             <strong>tipo</strong> e o <strong>nome</strong>.
@@ -196,7 +201,10 @@
 
       <div id="panel-step-3" class="panel" hidden>
         <div class="panel__container panel-primary">
-          <div class="panel__title">Responsáveis pelas assinaturas</div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="panel__title">Responsáveis pelas assinaturas</div>
+            <div class="config-icon" onclick="showSettings()"></div>
+          </div>
           <div class="panel__body">
             <form novalidate>
               <div class="row">
@@ -329,8 +337,53 @@
                 <button class="button-secondary" onclick="goToSecondStep()">
                   Voltar
                 </button>
-                <button class="button-primary" onclick="goToLastStep()">
+                <button class="button-primary" onclick="startSubscription()">
                   Iniciar assinatura
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-subscription" class="panel__subscription" hidden>
+        <div class="panel__container panel-primary">
+          <div class="panel__title">Validação Inicial</div>
+          <div class="panel__body">
+            Olá,<br />
+            Para iniciarmos a validação, forneça o <strong>CPF</strong><br />
+            e <strong>Data de Nascimento</strong>.
+            <br />
+            <br />
+            <br />
+            <div
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <div class="w-50">
+                <label class="cpf-icon">
+                  <input class="input-primary" placeholder="CPF" name="cpf" />
+                </label>
+              </div>
+              <div class="mt-3 w-50">
+                <label class="calendar-icon">
+                  <input
+                    class="input-primary"
+                    placeholder="DATA DE NASCIMENTO"
+                    name="dataNascimento"
+                  />
+                </label>
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="row">
+              <div class="button__container">
+                <button class="button-secondary" onclick="goToLastStep()">
+                  Voltar
+                </button>
+                <button class="button-primary" onclick="startSubscription()">
+                  Próximo
                 </button>
               </div>
             </div>
@@ -340,8 +393,78 @@
     </main>
 
     <footer>
-      @ 2023 PCA Engenharia de Software Ltda. - All Rights Reserved - Version 1.0.0
+      @ 2023 PCA Engenharia de Software Ltda. - All Rights Reserved - Version
+      1.0.0
     </footer>
+
+    <div id="panel-settings" class="backdrop" hidden>
+      <div class="backdrop-content">
+        <div class="panel">
+          <div class="panel__container panel-default">
+            <div class="panel__title">Parâmetros de Sistema</div>
+            <div class="panel__body">
+              <form novalidate>
+                <div class="row">
+                  <div class="col-md-6 order-first input-wrap">
+                    <label class="document-icon">
+                      <input
+                        class="input-modal"
+                        placeholder="Local do Processo"
+                        name="localProcesso"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="col-md-6 order-first input-wrap">
+                    <label class="document-icon">
+                      <input
+                        class="input-modal"
+                        placeholder="Tipo de Autenticação"
+                        name="tipoAutenticacao"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <p class="checkbox__text">
+                  Selecione o(s) tipo(s) de assinatura(s)
+                </p>
+                <div class="checkbox">
+                  <div class="checkbox__item">
+                    <input
+                      class="checkbox__item--input"
+                      type="checkbox"
+                      name="reconhecimentoFacial"
+                      id="reconhecimentoFacial"
+                    />
+                    <label
+                      for="reconhecimentoFacial"
+                      class="checkbox__item--label"
+                      >Reconhecimento Facial</label
+                    >
+                  </div>
+                  <div class="checkbox__item ml">
+                    <input
+                      class="checkbox__item--input"
+                      type="checkbox"
+                      name="emailToken"
+                      id="emailToken"
+                    />
+                    <label for="emailToken" class="checkbox__item--label"
+                      >E-mail Token</label
+                    >
+                  </div>
+                </div>
+              </form>
+              <div class="panel__button">
+                <button class="button-secondary" onclick="hideSettings()">
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script defer="defer" src="./assets/js/panel.js"></script>
   </body>
