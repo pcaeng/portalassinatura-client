@@ -1,4 +1,4 @@
-//TODO: ID dinâmico para fazer o input type="file" funcionar (ln54 - ln57).
+//TODO: ID dinâmico para fazer o input type="file" funcionar.
 
 function addEmailField() {
 
@@ -58,12 +58,12 @@ function addEmailField() {
 
     labelButtonArquivo.innerText = "Selecione o arquivo";
 
-    //Botão de adicionar
+    //Adicionando classes e propriedades para o botão de adicionar
     divPlusIcon.classList.add("col-md-1","order-first","input-wrap");
     divPlusIcon.setAttribute("onclick", "addEmailField()");
     plusIcon.classList.add("more-icon");
 
-    //Botão de deletar
+    //Adicionando classes e propriedades para o botão de deletar
     divLessIcon.classList.add("col-md-1","order-first","input-wrap");
     lessIcon.classList.add("less-icon");
 
@@ -79,7 +79,8 @@ function addEmailField() {
     divButtonArquivo.appendChild(textButtonArquivo);
 
     divPlusIcon.appendChild(plusIcon);
-    divLessIcon.appendChild(lessIcon)
+
+    divLessIcon.appendChild(lessIcon);
 
     //Inserir os elementos na div 'row'
     row.appendChild(divTipoDocumento);
@@ -97,5 +98,6 @@ function addEmailField() {
 function removeEmailField(e) {
     const element = e.target.parentElement;
     const row = element.parentElement;
+    
     row.remove();
 }

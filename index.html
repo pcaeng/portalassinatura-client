@@ -110,13 +110,13 @@
                   <div>
                     <input id="first-file" type="file" class="d-none" />
                   </div>
-                  <p
-                    id="first-file-value"
-                    class="file-button-text"
-                  ></p>
+                  <p id="first-file-value" class="file-button-text"></p>
                 </div>
 
-                <div class="col-md-1 order-first input-wrap" onclick="addEmailField()">
+                <div
+                  class="col-md-1 order-first input-wrap"
+                  onclick="addEmailField()"
+                >
                   <i class="more-icon"></i>
                 </div>
               </div>
@@ -143,7 +143,7 @@
             <div class="config-icon" onclick="showSettings()"></div>
           </div>
           <div class="panel__body">
-            <form novalidate>
+            <form novalidate id="subscription-list">
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
                   <label class="user-icon">
@@ -204,89 +204,12 @@
                   />
                   <p
                     id="assinaturas-first-file-value"
-                    style="font-size: 12px; padding-left: 17px"
+                    class="file-button-text"
                   ></p>
                 </div>
 
-                <div class="col-md-1 order-first input-wrap">
+                <div class="col-md-1 order-first input-wrap" onclick="addSubscriptionField()">
                   <i class="more-icon"></i>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="less-icon"></i>
-                </div>
-              </div>
-              <br /><br />
-              <div class="row">
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="user-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="NOME DO ASSINANTE"
-                      name="nomeAssinante"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="email-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="E-MAIL"
-                      name="email"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="cpf-icon">
-                    <input class="input-primary" placeholder="CPF" name="cpf" />
-                  </label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="calendar-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="DATA DE NASCIMENTO"
-                      name="dataNascimento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="document-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-2 order-first input-wrap">
-                  <label for="assinaturas-second-file" class="file-button"
-                    >Selecione o arquivo</label
-                  >
-                  <input
-                    id="assinaturas-second-file"
-                    type="file"
-                    class="d-none"
-                  />
-                  <p
-                    id="assinaturas-second-file-value"
-                    style="font-size: 12px; padding-left: 17px"
-                  ></p>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="more-icon"></i>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="less-icon"></i>
                 </div>
               </div>
             </form>
@@ -425,7 +348,8 @@
       </div>
     </div>
 
-    <script defer="defer" src="./assets/js/documents.js"></script>
     <script defer="defer" src="./assets/js/panel.js"></script>
+    <script defer="defer" src="./assets/js/documents.js"></script>
+    <script defer="defer" src="./assets/js/assinaturas.js"></script>
   </body>
 </html>
