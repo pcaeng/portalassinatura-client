@@ -51,27 +51,3 @@ document.getElementById("first-file").onchange = function () {
     var path = value.match(/[^\\/]*$/)[0];
     document.getElementById("first-file-value").innerHTML = path;
 }
-
-document.getElementById("second-file").onchange = function () {
-    var value = this.value;
-    var path = value.match(/[^\\/]*$/)[0];
-    document.getElementById("second-file-value").innerHTML = path;
-}
-
-document.getElementById("third-file").onchange = function () {
-    var value = this.value;
-    var path = value.match(/[^\\/]*$/)[0];
-    document.getElementById("third-file-value").innerHTML = path;
-}
-
-document.getElementById("assinaturas-first-file").onchange = function () {
-    var value = this.value;
-    var path = value.match(/[^\\/]*$/)[0];
-    document.getElementById("assinaturas-first-file-value").innerHTML = path;
-}
-
-document.getElementById("assinaturas-second-file").onchange = function () {
-    var value = this.value;
-    var path = value.match(/[^\\/]*$/)[0];
-    document.getElementById("assinaturas-second-file-value").innerHTML = path;
-}

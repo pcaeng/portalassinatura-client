@@ -81,7 +81,7 @@
             <strong>tipo</strong> e o <strong>nome</strong>.
             <br />
             <br />
-            <form novalidate>
+            <form novalidate id="emails-list">
               <div class="row">
                 <div class="col-md-4 order-first input-wrap">
                   <label class="document-icon">
@@ -104,89 +104,20 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap d-flex flex-column">
-                  <label for="first-file" class="file-button">Selecione o arquivo</label>
-                  <input id="first-file" type="file" class="d-none">
-                  <p id="first-file-value" style="font-size: 12px; padding-left: 17px;"></p>
+                  <label for="first-file" class="file-button"
+                    >Selecione o arquivo</label
+                  >
+                  <div>
+                    <input id="first-file" type="file" class="d-none" />
+                  </div>
+                  <p
+                    id="first-file-value"
+                    class="file-button-text"
+                  ></p>
                 </div>
 
-                <div class="col-md-1 order-first input-wrap">
+                <div class="col-md-1 order-first input-wrap" onclick="addEmailField()">
                   <i class="more-icon"></i>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="less-icon"></i>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="document-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="document-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="NOME DO DOCUMENTO"
-                      name="nomeDocumento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-2 order-first input-wrap">
-                  <label for="second-file" class="file-button">Selecione o arquivo</label>
-                  <input id="second-file" type="file" class="d-none">
-                  <p id="second-file-value" style="font-size: 12px; padding-left: 17px;"></p>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="more-icon"></i>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="less-icon"></i>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="document-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="TIPO DO DOCUMENTO"
-                      name="tipoDocumento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-4 order-first input-wrap">
-                  <label class="document-icon">
-                    <input
-                      class="input-primary"
-                      placeholder="NOME DO DOCUMENTO"
-                      name="nomeDocumento"
-                    />
-                  </label>
-                </div>
-
-                <div class="col-md-2 order-first input-wrap">
-                  <label for="third-file" class="file-button">Selecione o arquivo</label>
-                  <input id="third-file" type="file" class="d-none">
-                  <p id="third-file-value" style="font-size: 12px; padding-left: 17px;"></p>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="more-icon"></i>
-                </div>
-
-                <div class="col-md-1 order-first input-wrap">
-                  <i class="less-icon"></i>
                 </div>
               </div>
             </form>
@@ -263,9 +194,18 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap">
-                  <label for="assinaturas-first-file" class="file-button">Selecione o arquivo</label>
-                  <input id="assinaturas-first-file" type="file" class="d-none">
-                  <p id="assinaturas-first-file-value" style="font-size: 12px; padding-left: 17px;"></p>
+                  <label for="assinaturas-first-file" class="file-button"
+                    >Selecione o arquivo</label
+                  >
+                  <input
+                    id="assinaturas-first-file"
+                    type="file"
+                    class="d-none"
+                  />
+                  <p
+                    id="assinaturas-first-file-value"
+                    style="font-size: 12px; padding-left: 17px"
+                  ></p>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -327,9 +267,18 @@
                 </div>
 
                 <div class="col-md-2 order-first input-wrap">
-                  <label for="assinaturas-second-file" class="file-button">Selecione o arquivo</label>
-                  <input id="assinaturas-second-file" type="file" class="d-none">
-                  <p id="assinaturas-second-file-value" style="font-size: 12px; padding-left: 17px;"></p>
+                  <label for="assinaturas-second-file" class="file-button"
+                    >Selecione o arquivo</label
+                  >
+                  <input
+                    id="assinaturas-second-file"
+                    type="file"
+                    class="d-none"
+                  />
+                  <p
+                    id="assinaturas-second-file-value"
+                    style="font-size: 12px; padding-left: 17px"
+                  ></p>
                 </div>
 
                 <div class="col-md-1 order-first input-wrap">
@@ -476,6 +425,7 @@
       </div>
     </div>
 
+    <script defer="defer" src="./assets/js/documents.js"></script>
     <script defer="defer" src="./assets/js/panel.js"></script>
   </body>
 </html>
