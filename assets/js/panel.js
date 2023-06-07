@@ -46,8 +46,14 @@ function hideSettings() {
     settingsElement.hidden = true;
 }
 
-document.getElementById("first-file").onchange = function () {
+document.getElementById('fileName0').onchange = function () {
     var value = this.value;
     var path = value.match(/[^\\/]*$/)[0];
-    document.getElementById("first-file-value").innerHTML = path;
+    document.getElementById('fileName0-value').innerHTML = path;
+}
+
+document.getElementById('sub-fileName0').onchange = function () {
+    var value = this.value;
+    var path = value.match(/[^\\/]*$/)[0];
+    document.getElementById('sub-fileName0-value').innerHTML = path;
 }

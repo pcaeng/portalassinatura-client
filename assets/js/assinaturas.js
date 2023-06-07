@@ -1,5 +1,7 @@
 //TODO: ID dinâmico para fazer o input type="file" funcionar.
 
+var dynamicId = 1;
+
 function addSubscriptionField() {
     
     const form = document.getElementById("subscription-list");
@@ -94,6 +96,14 @@ function addSubscriptionField() {
     buttonArquivo.classList.add("d-none");
     textButtonArquivo.classList.add("file-button-text");
 
+    const buttonArquivoId = `sub-fileName${dynamicId}`;
+    const textButtonArquivoId = `sub-fileName${dynamicId}-value`;
+
+    labelButtonArquivo.setAttribute("for", buttonArquivoId)
+    buttonArquivo.setAttribute("id", buttonArquivoId);
+    buttonArquivo.setAttribute("type", "file");
+    textButtonArquivo.setAttribute("id", textButtonArquivoId)
+
     labelButtonArquivo.innerText = "Selecione o arquivo";
 
     //Adicionando classes e propriedades para o botão de adicionar
@@ -149,6 +159,19 @@ function addSubscriptionField() {
     //Inserir os elementos no DOM
     form.appendChild(container);
     divLessIcon.addEventListener("click", removeSubscriptionField);
+
+    console.log(buttonArquivoId, textButtonArquivoId);
+
+    if(dynamicId != 0) {
+        document.getElementById(buttonArquivoId).onchange = function () {
+            var value = this.value;
+            var path = value.match(/[^\\/]*$/)[0];
+            document.getElementById(textButtonArquivoId).innerHTML = path;
+        }
+    }
+
+    //Alterando o ID para a próxima iteração
+    dynamicId++;
 }
 
 //Remover as linhas desnecessárias de assinaturas

@@ -1,5 +1,7 @@
 //TODO: ID dinâmico para fazer o input type="file" funcionar.
 
+var dynamicId = 1;
+
 function addEmailField() {
 
     const form = document.getElementById("emails-list");
@@ -51,10 +53,13 @@ function addEmailField() {
     buttonArquivo.classList.add("d-none");
     textButtonArquivo.classList.add("file-button-text");
 
-    //labelButtonArquivo.setAttribute("for", "")
-    //buttonArquivo.setAttribute("id", "");
-    //buttonArquivo.setAttribute("type", "file");
-    //textButtonArquivo.setAttribute("id", "")
+    const buttonArquivoId = `fileName${dynamicId}`;
+    const textButtonArquivoId = `fileName${dynamicId}-value`;
+
+    labelButtonArquivo.setAttribute("for", buttonArquivoId)
+    buttonArquivo.setAttribute("id", buttonArquivoId);
+    buttonArquivo.setAttribute("type", "file");
+    textButtonArquivo.setAttribute("id", textButtonArquivoId)
 
     labelButtonArquivo.innerText = "Selecione o arquivo";
 
@@ -75,7 +80,7 @@ function addEmailField() {
     labelNomeDocumento.appendChild(nomeDocumento);
 
     divButtonArquivo.appendChild(labelButtonArquivo);
-    divButtonArquivo.appendChild(buttonArquivo);
+    labelButtonArquivo.appendChild(buttonArquivo);
     divButtonArquivo.appendChild(textButtonArquivo);
 
     divPlusIcon.appendChild(plusIcon);
@@ -92,6 +97,19 @@ function addEmailField() {
     //Inserir os elementos no DOM
     form.appendChild(row);
     divLessIcon.addEventListener("click", removeEmailField);
+    
+    console.log(buttonArquivoId, textButtonArquivoId);
+
+    if(dynamicId != 0) {
+        document.getElementById(buttonArquivoId).onchange = function () {
+            var value = this.value;
+            var path = value.match(/[^\\/]*$/)[0];
+            document.getElementById(textButtonArquivoId).innerHTML = path;
+        }
+    }
+
+    //Alterando o ID para a próxima iteração
+    dynamicId++;
 }
 
 //Remover as linhas desnecessárias de documentos
