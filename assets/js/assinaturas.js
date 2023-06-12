@@ -1,6 +1,6 @@
 //TODO: ID dinâmico para fazer o input type="file" funcionar.
 
-var dynamicId = 1;
+var dynamicId = 0;
 
 function addSubscriptionField() {
     
@@ -64,7 +64,7 @@ function addSubscriptionField() {
     email.classList.add("input-primary");
 
     email.setAttribute("placeholder","E-MAIL");
-    email.setAttribute("name","email");
+    email.setAttribute("name","emailAssinante");
 
     //Adicionando classes e propriedades para o campo "CPF"
     divCpf.classList.add("col-md-4","order-first","input-wrap");
@@ -72,7 +72,7 @@ function addSubscriptionField() {
     cpf.classList.add("input-primary");
 
     cpf.setAttribute("placeholder","CPF");
-    cpf.setAttribute("name","cpf");
+    cpf.setAttribute("name","cpfAssinante");
 
     //Adicionando classes e propriedades para o campo "Data de nascimento"
     divDataNascimento.classList.add("col-md-4","order-first","input-wrap");
@@ -102,6 +102,7 @@ function addSubscriptionField() {
     labelButtonArquivo.setAttribute("for", buttonArquivoId)
     buttonArquivo.setAttribute("id", buttonArquivoId);
     buttonArquivo.setAttribute("type", "file");
+    buttonArquivo.setAttribute("name", "assinaturaDocumento");
     textButtonArquivo.setAttribute("id", textButtonArquivoId)
 
     labelButtonArquivo.innerText = "Selecione o arquivo";
