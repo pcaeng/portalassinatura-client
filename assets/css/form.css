@@ -2,7 +2,7 @@
     padding-bottom: 12.5px;
 }
 
-input, textarea {
+input, select, textarea {
     width: 100%;
     color: #134E88;
     font-family: 'Montserrat';

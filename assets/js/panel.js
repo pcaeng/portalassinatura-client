@@ -6,7 +6,7 @@ function goToFirstStep() {
     secondStepElement.hidden = true;
 }
 
-function goToSecondStep() {
+function goToSecondStep() {    
     const firstStepElement = document.getElementById("panel-step-1");
     firstStepElement.hidden = true;
 
@@ -25,8 +25,14 @@ function goToLastStep() {
     lastStepElement.hidden = false;
 }
 
-function startSubscription() {
-    console.log("Chegou aqui!");
+function showDocumentRow() {
+    const hideDocumentRow = document.getElementById("hideDocumentRow");
+    hideDocumentRow.hidden = false;
+}
+
+function hideDocumentRow() {
+    const hideDocumentRow = document.getElementById("hideDocumentRow");
+    hideDocumentRow.hidden = true;
 }
 
 function showSettings() {
