@@ -48,21 +48,6 @@ const setSignatureDocument1 = (value) => {
   signatureDocument1 = value;
 };
 
-let signatureDocumentName2 = 'Contrato de prestação de serviços'; // tipo: string
-const setSignatureDocumentName2 = (value) => {
-  signatureDocumentName2 = value;
-};
-
-let signatureDocumentDescription2 = ''; // tipo: string
-const setSignatureDocumentDescription2 = (value) => {
-  signatureDocumentDescription2 = value;
-};
-
-let signatureDocument2 = undefined; // tipo: File | undefined
-const setSignatureDocument2 = (value) => {
-  signatureDocument2 = value;
-};
-
 let customerDocument = undefined; // tipo: File | undefined
 const setCustomerDocument = (value) => {
   customerDocument = value;
@@ -73,7 +58,6 @@ const handleChangeSignature = (event) => {
     ...signature,
     [event.target.name]: event.target.value,
   });
-  console.log(signature);
 };
 
 const handleChangeCustomer = (event) => {
@@ -81,7 +65,6 @@ const handleChangeCustomer = (event) => {
     ...customer,
     [event.target.name]: event.target.value,
   });
-  console.log(customer)
 };
 
 const handleChangeCustomerDocument = (event) => {
@@ -110,13 +93,6 @@ const handleSubmit = () => {
     });
   }
 
-  if (signatureDocumentDescription2.length > 0) {
-    signatureDocuments.push({
-      name: signatureDocumentName2,
-      description: signatureDocumentDescription2,
-    });
-  }
-
   signatureAux.documents = signatureDocuments;
 
   const form = {
@@ -126,6 +102,8 @@ const handleSubmit = () => {
 
   Authenticate('dev.api-key')
     .then(() => {
+      console.log(customer)
+      console.log(signature)
       AddSignature(form)
         .then((resp) => {
           console.log('Assinatura adicionada', 'success');
@@ -136,8 +114,6 @@ const handleSubmit = () => {
 
             if (doc.name === signatureDocumentName1) {
               document = signatureDocument1;
-            } else if (doc.name === signatureDocumentName2) {
-              document = signatureDocument2;
             } else {
               document = customerDocument;
             }
@@ -157,6 +133,8 @@ const handleSubmit = () => {
                 .catch((err) => {
                   console.log(`Falha ao fazer o upload do documento "${doc.name}"`, 'error');
                 });
+            } else {
+              console.log("Não bateu aqui")
             }
           });
         })

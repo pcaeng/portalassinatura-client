@@ -42,9 +42,7 @@
 
     <main>
       <form novalidate id="newSignature">
-
         <div class="main">
-          
           <div id="panel-step-1" class="panel">
             <div class="panel__container panel-primary">
               <div class="panel__title">Apresentação</div>
@@ -96,8 +94,8 @@
                       <select
                         class="input-primary"
                         placeholder="NOME DO DOCUMENTO"
-                        name="nomeDocumento"
-                        id="doc1-name0"
+                        name="type"
+                        id="doc-name0"
                         required
                       >
                         <option value="Termo de adesão">Termo de adesão</option>
@@ -113,8 +111,8 @@
                       <input
                         class="input-primary"
                         placeholder="DESCRIÇÃO DO DOCUMENTO"
-                        name="descricaoDocumento"
-                        id="doc1-desc0"
+                        name="description"
+                        id="doc-desc0"
                         required
                       />
                     </label>
@@ -126,7 +124,7 @@
                     <label class="file-button">
                       Selecione o arquivo
                       <input
-                        id="doc1-fileName0"
+                        id="doc-fileName0"
                         type="file"
                         accept=".pdf"
                         class="d-none file-input"
@@ -135,15 +133,12 @@
                       />
                     </label>
                     <p
-                      id="doc1-fileName0-value"
+                      id="doc-fileName0-value"
                       class="file-button-text file-value"
                     ></p>
                   </div>
 
-                  <div
-                    class="col-md-1 order-first input-wrap"
-                    onclick="showDocumentRow()"
-                  >
+                  <div class="col-md-1 order-first input-wrap">
                     <i class="more-icon"></i>
                   </div>
                 </div>
@@ -184,7 +179,7 @@
                       <input
                         class="input-primary"
                         placeholder="NOME DO ASSINANTE"
-                        name="nomeAssinante"
+                        name="name"
                         id="cus-name0"
                         required
                       />
@@ -196,7 +191,7 @@
                       <input
                         class="input-primary"
                         placeholder="E-MAIL"
-                        name="emailAssinante"
+                        name="email"
                         id="cus-email0"
                         required
                       />
@@ -208,7 +203,7 @@
                       <input
                         class="input-primary"
                         placeholder="CPF"
-                        name="cpfAssinante"
+                        name="cpf"
                         id="cus-cpf0"
                         required
                       />
@@ -220,9 +215,10 @@
                   <div class="col-md-4 order-first input-wrap">
                     <label class="calendar-icon">
                       <input
+                        type="date"
                         class="input-primary"
                         placeholder="DATA DE NASCIMENTO"
-                        name="dataNascimento"
+                        name="birthdate"
                         id="cus-birth0"
                         required
                       />
@@ -234,7 +230,7 @@
                       <select
                         class="input-primary"
                         placeholder="NOME DO DOCUMENTO"
-                        name="nomeDocumentoAssinatura"
+                        name="name"
                         id="cus-nameDoc0"
                         required
                       >
@@ -245,7 +241,19 @@
                     </label>
                   </div>
 
-                  <div class="col-md-2 order-first input-wrap">
+                  <div class="col-md-4 order-first input-wrap">
+                    <label class="document-icon">
+                      <select
+                        class="input-primary"
+                        placeholder="PARTE"
+                        name="partyId"
+                        id="cus-party0"
+                        required
+                      ></select>
+                    </label>
+                  </div>
+
+                  <div class="col-md-4 order-first input-wrap">
                     <label class="file-button">
                       Selecione o arquivo
                       <input
@@ -255,7 +263,8 @@
                         name="arquivoAssinatura"
                       />
                     </label>
-
+                  </div>
+                  <div class="col-md-4 order-first input-wrap d-flex align-items-center">
                     <p
                       id="sub-fileName0-value"
                       class="file-button-text file-value"
@@ -263,7 +272,7 @@
                   </div>
 
                   <div
-                    class="col-md-1 order-first input-wrap"
+                    class="col-md-4 order-first input-wrap d-flex justify-content-center"
                     onclick="addSubscriptionField()"
                   >
                     <i class="more-icon"></i>
@@ -309,12 +318,15 @@
                   <div class="row">
                     <div class="col-md-6 order-first input-wrap">
                       <label class="document-icon">
-                        <input
+                        <select
                           class="input-modal"
                           placeholder="Local do Processo"
-                          name="localProcesso"
+                          name="place"
                           id="config-local0"
-                        />
+                        >
+                          <option value="SignaturePortal">Portal</option>
+                          <option value="Embedded">Embedded</option>
+                        </select>
                       </label>
                     </div>
 
@@ -323,7 +335,7 @@
                         <select
                           class="input-modal"
                           placeholder="Autenticação"
-                          name="autenticacao"
+                          name="authentication"
                           id="config-auth0"
                         >
                           <option value="FormAuth">Formulário</option>
@@ -341,7 +353,7 @@
                       <select
                         class="input-modal"
                         placeholder="Tipo de Autenticação"
-                        name="tipoAutenticacao"
+                        name="type"
                         id="config-tipo0"
                       >
                         <option value="Facial">Reconhecimento facial</option>
@@ -373,6 +385,5 @@
     <script defer="defer" src="./assets/js/api.js"></script>
     <script defer="defer" src="./assets/js/signature.js"></script>
     <script defer="defer" src="./assets/js/values.js"></script>
-
   </body>
 </html>

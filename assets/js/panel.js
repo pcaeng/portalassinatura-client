@@ -25,16 +25,6 @@ function goToLastStep() {
     lastStepElement.hidden = false;
 }
 
-function showDocumentRow() {
-    const hideDocumentRow = document.getElementById("hideDocumentRow");
-    hideDocumentRow.hidden = false;
-}
-
-function hideDocumentRow() {
-    const hideDocumentRow = document.getElementById("hideDocumentRow");
-    hideDocumentRow.hidden = true;
-}
-
 function showSettings() {
     const settingsElement = document.getElementById("panel-settings");
     settingsElement.hidden = false;

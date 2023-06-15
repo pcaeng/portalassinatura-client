@@ -4,7 +4,6 @@ var accessToken = '';
 
 const Authenticate = async (xApiKey) => {
     // Chama a função 'post' da API para autenticação
-    debugger;
     const response = await customFetch(`${baseUrl}/Authentication`, {
         method: 'POST',
         headers: new Headers({
@@ -21,7 +20,6 @@ const Authenticate = async (xApiKey) => {
 
 const AddSignature = async (signature) => {
     // Chama a função 'post' da API para adicionar uma assinatura
-    debugger;
     return await customFetch(`${baseUrl}/Signature`, {
         method: 'POST',
         headers: new Headers({
@@ -34,7 +32,6 @@ const AddSignature = async (signature) => {
 };
 
 const UploadSignatureDocuments = async (signatureId, documentId, document) => {
-    debugger;
 
     const form = new FormData();
 
@@ -50,7 +47,6 @@ const UploadSignatureDocuments = async (signatureId, documentId, document) => {
 };
 
 const UpdateSignatureStatus = async (signatureId, status) => {
-    debugger;
     return await customFetch(`${baseUrl}/Signature/${signatureId}?status=${status}`, {
         method: 'PATCH',
         headers: new Headers({
@@ -58,3 +54,9 @@ const UpdateSignatureStatus = async (signatureId, status) => {
         })
     });
 };
+
+const GetParty = async () => {
+    return await customFetch(`${baseUrl}/Party`, {
+        method: 'GET'
+    })
+}

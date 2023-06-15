@@ -11,36 +11,7 @@ var documentTypeID = `doc-type${typeID}`;
 
 var documentNameID = `doc-name${nameID}`;
 
-//Exibição/armazenamento dos campos criados manualmente no HTML
-if (fileID == 0) {
-    const arquivoDocumento = document.getElementById(buttonArquivoID);
-    arquivoDocumento.onchange = function () {
-        var file = this.files[0];
-        var value = this.value;
-        var path = value.match(/[^\\/]*$/)[0];
-        document.getElementById(textButtonArquivoID).innerHTML = path;
-        console.log(file);
-    }
-}
-
-if (typeID == 0) {
-    const tipoDocumento = document.getElementById(documentTypeID);
-    tipoDocumento.onchange = function () {
-        var value = this.value;
-        console.log(value);
-    }
-}
-if (nameID == 0) {
-    const nomeDocumento = document.getElementById(documentNameID);
-    nomeDocumento.onchange = function () {
-        var value = this.value;
-        console.log(value);
-    }
-}
-
 //Verificação das informações
-console.log(buttonArquivoID, textButtonArquivoID);
-console.log('fileID: ' + fileID + ', typeID: ' + typeID + ', nameID: ' + nameID);
 
 //Função executada a cada linha adicionada pelo botão [+]
 function addEmailField() {
