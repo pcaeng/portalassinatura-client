@@ -88,58 +88,65 @@
                 informe o <strong>tipo</strong> e o <strong>nome</strong>.
                 <br />
                 <br />
-                <div class="row">
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="document-icon">
-                      <select
-                        class="input-primary"
-                        placeholder="NOME DO DOCUMENTO"
-                        name="type"
-                        id="doc-name0"
-                        required
-                      >
-                        <option value="Termo de adesão">Termo de adesão</option>
-                        <option value="Contrato de prestação de serviços">
-                          Contrato de prestação de serviços
-                        </option>
-                      </select>
-                    </label>
-                  </div>
+                <div id="documents-container">
+                  <div class="row">
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="document-icon">
+                        <select
+                          class="input-primary"
+                          placeholder="NOME DO DOCUMENTO"
+                          name="type"
+                          id="doc-name0"
+                          required
+                        >
+                          <option value="Termo de adesão">
+                            Termo de adesão
+                          </option>
+                          <option value="Contrato de prestação de serviços">
+                            Contrato de prestação de serviços
+                          </option>
+                        </select>
+                      </label>
+                    </div>
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="document-icon">
-                      <input
-                        class="input-primary"
-                        placeholder="DESCRIÇÃO DO DOCUMENTO"
-                        name="description"
-                        id="doc-desc0"
-                        required
-                      />
-                    </label>
-                  </div>
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="document-icon">
+                        <input
+                          class="input-primary"
+                          placeholder="DESCRIÇÃO DO DOCUMENTO"
+                          name="description"
+                          id="doc-desc0"
+                          required
+                        />
+                      </label>
+                    </div>
 
-                  <div
-                    class="col-md-2 order-first input-wrap d-flex flex-column"
-                  >
-                    <label class="file-button">
-                      Selecione o arquivo
-                      <input
-                        id="doc-fileName0"
-                        type="file"
-                        accept=".pdf"
-                        class="d-none file-input"
-                        name="arquivoDocumento"
-                        required
-                      />
-                    </label>
-                    <p
-                      id="doc-fileName0-value"
-                      class="file-button-text file-value"
-                    ></p>
-                  </div>
+                    <div
+                      class="col-md-3 order-first input-wrap d-flex flex-column"
+                    >
+                      <label class="file-button">
+                        Selecione o arquivo
+                        <input
+                          id="doc-fileName0"
+                          type="file"
+                          accept=".pdf"
+                          class="d-none file-input"
+                          name="arquivoDocumento"
+                          required
+                        />
+                      </label>
+                      <p
+                        id="doc-fileName0-value"
+                        class="file-button-text file-value"
+                      ></p>
+                    </div>
 
-                  <div class="col-md-1 order-first input-wrap">
-                    <i class="more-icon"></i>
+                    <div
+                      class="col-md-1 order-first input-wrap"
+                      onclick="addEmailField()"
+                    >
+                      <i class="more-icon"></i>
+                    </div>
                   </div>
                 </div>
                 <br />
@@ -173,109 +180,115 @@
                 <div class="config-icon" onclick="showSettings()"></div>
               </div>
               <div class="panel__body">
-                <div class="row">
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="user-icon">
-                      <input
-                        class="input-primary"
-                        placeholder="NOME DO ASSINANTE"
-                        name="name"
-                        id="cus-name0"
-                        required
-                      />
-                    </label>
+                <div id="subscription-container">
+                  <div class="row">
+
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="user-icon">
+                        <input
+                          class="input-primary"
+                          placeholder="NOME DO ASSINANTE"
+                          name="name"
+                          id="cus-name0"
+                          required
+                        />
+                      </label>
+                    </div>
+
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="email-icon">
+                        <input
+                          class="input-primary"
+                          placeholder="E-MAIL"
+                          name="email"
+                          id="cus-email0"
+                          required
+                        />
+                      </label>
+                    </div>
+
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="cpf-icon">
+                        <input
+                          class="input-primary"
+                          placeholder="CPF"
+                          name="cpf"
+                          id="cus-cpf0"
+                          required
+                        />
+                      </label>
+                    </div>
                   </div>
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="email-icon">
-                      <input
-                        class="input-primary"
-                        placeholder="E-MAIL"
-                        name="email"
-                        id="cus-email0"
-                        required
-                      />
-                    </label>
-                  </div>
+                  <div class="row">
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="cpf-icon">
-                      <input
-                        class="input-primary"
-                        placeholder="CPF"
-                        name="cpf"
-                        id="cus-cpf0"
-                        required
-                      />
-                    </label>
-                  </div>
-                </div>
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="calendar-icon">
+                        <input
+                          type="date"
+                          class="input-primary"
+                          placeholder="DATA DE NASCIMENTO"
+                          name="birthdate"
+                          id="cus-birth0"
+                          required
+                        />
+                      </label>
+                    </div>
 
-                <div class="row">
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="calendar-icon">
-                      <input
-                        type="date"
-                        class="input-primary"
-                        placeholder="DATA DE NASCIMENTO"
-                        name="birthdate"
-                        id="cus-birth0"
-                        required
-                      />
-                    </label>
-                  </div>
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="document-icon">
+                        <select
+                          class="input-primary"
+                          placeholder="NOME DO DOCUMENTO"
+                          name="name"
+                          id="cus-nameDoc0"
+                          required
+                        >
+                          <option value="RG">RG</option>
+                          <option value="CPF">CPF</option>
+                          <option value="CNH">CNH</option>
+                        </select>
+                      </label>
+                    </div>
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="document-icon">
-                      <select
-                        class="input-primary"
-                        placeholder="NOME DO DOCUMENTO"
-                        name="name"
-                        id="cus-nameDoc0"
-                        required
-                      >
-                        <option value="RG">RG</option>
-                        <option value="CPF">CPF</option>
-                        <option value="CNH">CNH</option>
-                      </select>
-                    </label>
-                  </div>
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="document-icon">
+                        <select
+                          class="input-primary"
+                          placeholder="PARTE"
+                          name="partyId"
+                          id="cus-party0"
+                          required
+                        ></select>
+                      </label>
+                    </div>
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="document-icon">
-                      <select
-                        class="input-primary"
-                        placeholder="PARTE"
-                        name="partyId"
-                        id="cus-party0"
-                        required
-                      ></select>
-                    </label>
-                  </div>
+                    <div class="col-md-4 order-first input-wrap">
+                      <label class="file-button">
+                        Selecione o arquivo
+                        <input
+                          id="sub-fileName0"
+                          type="file"
+                          class="d-none file-input"
+                          name="arquivoAssinatura"
+                        />
+                      </label>
+                    </div>
+                    <div
+                      class="col-md-4 order-first input-wrap d-flex align-items-center"
+                    >
+                      <p
+                        id="sub-fileName0-value"
+                        class="file-button-text file-value"
+                      ></p>
+                    </div>
 
-                  <div class="col-md-4 order-first input-wrap">
-                    <label class="file-button">
-                      Selecione o arquivo
-                      <input
-                        id="sub-fileName0"
-                        type="file"
-                        class="d-none file-input"
-                        name="arquivoAssinatura"
-                      />
-                    </label>
-                  </div>
-                  <div class="col-md-4 order-first input-wrap d-flex align-items-center">
-                    <p
-                      id="sub-fileName0-value"
-                      class="file-button-text file-value"
-                    ></p>
-                  </div>
-
-                  <div
-                    class="col-md-4 order-first input-wrap d-flex justify-content-center"
-                    onclick="addSubscriptionField()"
-                  >
-                    <i class="more-icon"></i>
+                    <div
+                      class="col-md-4 order-first input-wrap d-flex justify-content-end"
+                      onclick="addSubscriptionField()"
+                    >
+                      <i class="more-icon"></i>
+                    </div>
                   </div>
                 </div>
 

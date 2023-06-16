@@ -60,7 +60,8 @@
 
 .file-button-text {
     font-size: 12px;
-    padding-left: 17px;
+    padding-left: 1em;
+    width: 300px;
 }
 
 input[type='date']::-webkit-calendar-picker-indicator {

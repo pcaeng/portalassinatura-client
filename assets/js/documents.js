@@ -6,12 +6,11 @@ var nameID = 0;
 //Atribuição dos IDs primários, manualmente criados no HTML
 var buttonArquivoID = `fileName${fileID}`;
 var textButtonArquivoID = `fileName${fileID}-value`;
-
 var documentTypeID = `doc-type${typeID}`;
-
 var documentNameID = `doc-name${nameID}`;
 
-//Verificação das informações
+//Declaração do container
+const form = document.getElementById('documents-container');
 
 //Função executada a cada linha adicionada pelo botão [+]
 function addEmailField() {
@@ -23,26 +22,21 @@ function addEmailField() {
     const buttonArquivoID = `fileName${fileID}`;
     const textButtonArquivoID = `fileName${fileID}-value`;
 
-    const documentTypeID = `doc-type${typeID}`;
     const documentNameID = `doc-name${nameID}`;
-
-    //Verificação das informações
-    console.log(buttonArquivoID, textButtonArquivoID);
-    console.log('fileID: ' + fileID + ', typeID: ' + typeID + ', nameID: ' + nameID);
-
-    //Referência da tag <form>
-    const form = document.getElementById("emails-list");
+    const documentTypeID = `doc-type${typeID}`;
 
     //Criando os elementos
     const row = document.createElement("div");
 
-    const divTipoDocumento = document.createElement("div");
-    const labelTipoDocumento = document.createElement("label");
-    const tipoDocumento = document.createElement("input");
-
     const divNomeDocumento = document.createElement("div");
     const labelNomeDocumento = document.createElement("label");
-    const nomeDocumento = document.createElement("input");
+    const nomeDocumento = document.createElement("select");
+    const termoAdesao = document.createElement("option");
+    const contratoServicos = document.createElement("option");
+
+    const divDescricaoDocumento = document.createElement("div");
+    const labelDescricaoDocumento = document.createElement("label");
+    const descricaoDocumento = document.createElement("input");
 
     const divButtonArquivo = document.createElement("div");
     const labelButtonArquivo = document.createElement("label");
@@ -58,31 +52,35 @@ function addEmailField() {
     //Adicionando a classe 'row' para a div
     row.classList.add("row");
 
-    //Adicionando as classes e propriedades para o campo 'Tipo do documento'
-    divTipoDocumento.classList.add("col-md-4", "order-first", "input-wrap");
-    labelTipoDocumento.classList.add("document-icon");
-    tipoDocumento.classList.add("input-primary");
-
-    tipoDocumento.setAttribute("placeholder", "TIPO DO DOCUMENTO");
-    tipoDocumento.setAttribute("name", "tipoDocumento");
-    tipoDocumento.setAttribute("id", documentTypeID);
-
     //Adicionando as classes e propriedades para o campo 'Nome do documento'
     divNomeDocumento.classList.add("col-md-4", "order-first", "input-wrap");
     labelNomeDocumento.classList.add("document-icon");
     nomeDocumento.classList.add("input-primary");
 
     nomeDocumento.setAttribute("placeholder", "NOME DO DOCUMENTO");
-    nomeDocumento.setAttribute("name", "nomeDocumento");
-    nomeDocumento.setAttribute("id", documentNameID);
+    nomeDocumento.setAttribute("name", "type");
+    nomeDocumento.setAttribute("id", documentTypeID);
+
+    termoAdesao.setAttribute("value", "Termo de adesão");
+    contratoServicos.setAttribute("value", "Contrato de prestação de serviços");
+
+    //Adicionando as classes e propriedades para o campo 'Descrição do documento'
+    divDescricaoDocumento.classList.add("col-md-4", "order-first", "input-wrap");
+    labelDescricaoDocumento.classList.add("document-icon");
+    descricaoDocumento.classList.add("input-primary");
+
+    descricaoDocumento.setAttribute("placeholder", "DESCRIÇÃO DO DOCUMENTO");
+    descricaoDocumento.setAttribute("name", "description");
+    descricaoDocumento.setAttribute("id", documentNameID);
 
     //Adicionando as classes e propriedades para o campo 'Selecione o arquivo'
     divButtonArquivo.classList.add("col-md-2", "order-first", "input-wrap", "d-flex", "flex-column");
     labelButtonArquivo.classList.add("file-button");
     buttonArquivo.classList.add("d-none");
+    buttonArquivo.classList.add("file-input");
     textButtonArquivo.classList.add("file-button-text");
+    textButtonArquivo.classList.add("file-value");
 
-    labelButtonArquivo.setAttribute("for", buttonArquivoID)
     buttonArquivo.setAttribute("id", buttonArquivoID);
     buttonArquivo.setAttribute("type", "file");
     buttonArquivo.setAttribute("name", "arquivoDocumento");
@@ -100,11 +98,13 @@ function addEmailField() {
     lessIcon.classList.add("less-icon");
 
     //Hierarquia de inserções
-    divTipoDocumento.appendChild(labelTipoDocumento);
-    labelTipoDocumento.appendChild(tipoDocumento);
-
     divNomeDocumento.appendChild(labelNomeDocumento);
     labelNomeDocumento.appendChild(nomeDocumento);
+    nomeDocumento.appendChild(termoAdesao);
+    nomeDocumento.appendChild(contratoServicos);
+
+    divDescricaoDocumento.appendChild(labelDescricaoDocumento);
+    labelDescricaoDocumento.appendChild(descricaoDocumento);
 
     divButtonArquivo.appendChild(labelButtonArquivo);
     labelButtonArquivo.appendChild(buttonArquivo);
@@ -115,8 +115,8 @@ function addEmailField() {
     divLessIcon.appendChild(lessIcon);
 
     //Inserir os elementos na div 'row'
-    row.appendChild(divTipoDocumento);
     row.appendChild(divNomeDocumento);
+    row.appendChild(divDescricaoDocumento);
     row.appendChild(divButtonArquivo);
     row.appendChild(divPlusIcon);
     row.appendChild(divLessIcon);
@@ -132,21 +132,6 @@ function addEmailField() {
             var path = value.match(/[^\\/]*$/)[0];
             document.getElementById(textButtonArquivoID).innerHTML = path;
             console.log(this.files[0]);
-        }
-    }
-
-    //Exibição/armazenamento dos campos criados dinamicamente no JS
-    if (typeID != 0) {
-        document.getElementById(documentTypeID).onchange = function () {
-            var value = this.value;
-            console.log(value);
-        }
-    }
-
-    if (nameID != 0) {
-        document.getElementById(documentNameID).onchange = function () {
-            var value = this.value;
-            console.log(value);
         }
     }
 }
