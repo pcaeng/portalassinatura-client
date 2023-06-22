@@ -35,10 +35,21 @@ function hideSettings() {
     settingsElement.hidden = true;
 }
 
-function showEmbeddedPortal() {
+function voltarParaPrimeiroPainel() {
+    const lastStepElement = document.getElementById("panel-3");
+    lastStepElement.hidden = true;
+
+    const firstStepElement = document.getElementById("panel-2");
+    firstStepElement.hidden = false;
+}
+
+function showEmbeddedPortal(signatureId) {
     const main = document.getElementById("main");
     main.hidden = true;
 
-    const embedded = document.getElementById("panel-embedded");
-    embedded.hidden = false;
+    const embeddedPortal_div = document.getElementById("panel-embedded");
+    const embeddedPortal = document.getElementById("pca-signature");
+    embeddedPortal.setAttribute("data-pca-signature-id", signatureId);
+
+    embeddedPortal_div.hidden = false;
 }

@@ -84,10 +84,6 @@ function obterCustomers(dadosFormularios) {
 
 function obterDadosCriacaoAssinatura(dadosFormularios) {
 
-  const documentos = dadosFormularios.documentos;
-  const configuracoes = dadosFormularios.configuracoes;
-  const assinaturas = dadosFormularios.assinaturas;
-
   const dadosCriacaoAssinatura = {
     signature: obterSignature(dadosFormularios),
     customers: obterCustomers(dadosFormularios)
@@ -110,9 +106,13 @@ const handleSubmit = () => {
         .then((resp) => {
           if (resp.success == false) {
             alert('Preencha todos os campos antes de iniciar a assinatura.');
-          } else {
+            voltarParaPrimeiroPainel();
+          }
+          else {
+            console.log(dadosCriacaoAssinatura);
+
             console.log('Assinatura adicionada com sucesso');
-            
+
             const { signatureId, documents } = resp.data;
 
             const promisses = [];
@@ -137,6 +137,13 @@ const handleSubmit = () => {
               UpdateSignatureStatus(signatureId, 'Requested')
                 .then(() => {
                   console.log('Status da assinatura alterado para requisitado');
+
+                  if (dadosCriacaoAssinatura.signature.place == 'SignaturePortal') {
+                    alert('Assinatura adicionada com sucesso');
+                  } else {
+                    alert('Assinatura adicionada com sucesso');
+                    showEmbeddedPortal(signatureId);
+                  }
                 })
                 .catch((err) => {
                   console.log('Falha ao atualizar o status da assinatura');
