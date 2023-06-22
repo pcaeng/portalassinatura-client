@@ -1,145 +1,153 @@
-//Inicialização de variáveis para alteração dinâmica do ID dos campos
-var fileID = 0;
-var typeID = 0;
-var nameID = 0;
+//TODO: AÇÃO DO BOTÃO DE ADICIONAR LINHA (CAMPO DINÂMICO)
+//TODO: AÇÃO DO BOTÃO DE REMOVER LINHA (CAMPO DINÂMICO)
+//TODO: RESOLVER PROBLEMA DO CONTADOR (NÃO FUNCIONA PARA 2+ CAMPOS)
+//TODO: ENVIAR INFORMAÇÕES PARA O HANDLESUBMIT()
 
-//Atribuição dos IDs primários, manualmente criados no HTML
-var buttonArquivoID = `fileName${fileID}`;
-var textButtonArquivoID = `fileName${fileID}-value`;
-var documentTypeID = `doc-type${typeID}`;
-var documentNameID = `doc-name${nameID}`;
+let qtdDocumentos = 1;
 
-//Declaração do container
-const form = document.getElementById('documents-container');
+function adicionarLinhaDocumentos() {
 
-//Função executada a cada linha adicionada pelo botão [+]
-function addEmailField() {
+    qtdDocumentos++;
 
-    //Incrementação das variáveis dinâmicas, para que novos IDS sejam atribuídos
-    fileID++; typeID++; nameID++;
-
-    //Atribuição dos novos IDs dinâmicos
-    const buttonArquivoID = `fileName${fileID}`;
-    const textButtonArquivoID = `fileName${fileID}-value`;
-
-    const documentNameID = `doc-name${nameID}`;
-    const documentTypeID = `doc-type${typeID}`;
+    const form_documentos = document.getElementById('documentos');
 
     //Criando os elementos
     const row = document.createElement("div");
 
-    const divNomeDocumento = document.createElement("div");
-    const labelNomeDocumento = document.createElement("label");
+    const nomeDocumento_div = document.createElement("div");
+    const nomeDocumento_label = document.createElement("label");
     const nomeDocumento = document.createElement("select");
-    const termoAdesao = document.createElement("option");
-    const contratoServicos = document.createElement("option");
+    const nomeDocumento_termoAdesao = document.createElement("option");
+    const nomeDocumento_contratoServicos = document.createElement("option");
 
-    const divDescricaoDocumento = document.createElement("div");
-    const labelDescricaoDocumento = document.createElement("label");
+    const descricaoDocumento_div = document.createElement("div");
+    const descricaoDocumento_label = document.createElement("label");
     const descricaoDocumento = document.createElement("input");
 
-    const divButtonArquivo = document.createElement("div");
-    const labelButtonArquivo = document.createElement("label");
-    const buttonArquivo = document.createElement("input");
-    const textButtonArquivo = document.createElement("p");
+    const arquivo_div = document.createElement("div");
+    const arquivo_label = document.createElement("label");
+    const arquivo = document.createElement("input");
+    const arquivo_path = document.createElement("p");
 
-    const divPlusIcon = document.createElement("div");
-    const plusIcon = document.createElement("i");
+    const addIcon_div = document.createElement("div");
+    const addIcon = document.createElement("i");
 
-    const divLessIcon = document.createElement("div");
+    const lessIcon_div = document.createElement("div");
     const lessIcon = document.createElement("i");
 
     //Adicionando a classe 'row' para a div
     row.classList.add("row");
 
     //Adicionando as classes e propriedades para o campo 'Nome do documento'
-    divNomeDocumento.classList.add("col-md-4", "order-first", "input-wrap");
-    labelNomeDocumento.classList.add("document-icon");
+    nomeDocumento_div.classList.add("col-md-4", "default-padding");
+    nomeDocumento_label.classList.add("document-icon");
     nomeDocumento.classList.add("input-primary");
 
-    nomeDocumento.setAttribute("placeholder", "NOME DO DOCUMENTO");
+    nomeDocumento.setAttribute("placeholder", "Nome do documento");
     nomeDocumento.setAttribute("name", "type");
-    nomeDocumento.setAttribute("id", documentTypeID);
+    nomeDocumento.setAttribute("value", "Termo de adesão");
+    // nomeDocumento.setAttribute("id", documentTypeID);
 
-    termoAdesao.setAttribute("value", "Termo de adesão");
-    contratoServicos.setAttribute("value", "Contrato de prestação de serviços");
+    nomeDocumento_termoAdesao.setAttribute("value", "Termo de adesão");
+    nomeDocumento_contratoServicos.setAttribute("value", "Contrato de prestação de serviços");
+
+    nomeDocumento_termoAdesao.innerText = "Termo de adesão";
+    nomeDocumento_contratoServicos.innerText = "Contrato de prestação de serviços";
 
     //Adicionando as classes e propriedades para o campo 'Descrição do documento'
-    divDescricaoDocumento.classList.add("col-md-4", "order-first", "input-wrap");
-    labelDescricaoDocumento.classList.add("document-icon");
+    descricaoDocumento_div.classList.add("col-md-4", "default-padding");
+    descricaoDocumento_label.classList.add("document-icon");
     descricaoDocumento.classList.add("input-primary");
 
-    descricaoDocumento.setAttribute("placeholder", "DESCRIÇÃO DO DOCUMENTO");
+    descricaoDocumento.setAttribute("placeholder", "Descrição do documento");
     descricaoDocumento.setAttribute("name", "description");
-    descricaoDocumento.setAttribute("id", documentNameID);
+    descricaoDocumento.setAttribute("value", "");
+    // descricaoDocumento.setAttribute("id", documentNameID);
 
     //Adicionando as classes e propriedades para o campo 'Selecione o arquivo'
-    divButtonArquivo.classList.add("col-md-2", "order-first", "input-wrap", "d-flex", "flex-column");
-    labelButtonArquivo.classList.add("file-button");
-    buttonArquivo.classList.add("d-none");
-    buttonArquivo.classList.add("file-input");
-    textButtonArquivo.classList.add("file-button-text");
-    textButtonArquivo.classList.add("file-value");
+    arquivo_div.classList.add("col-md-2", "default-padding", "d-flex", "flex-column");
+    arquivo_label.classList.add("file-button");
+    arquivo.classList.add("d-none");
+    arquivo_path.classList.add("file-button-text");
 
-    buttonArquivo.setAttribute("id", buttonArquivoID);
-    buttonArquivo.setAttribute("type", "file");
-    buttonArquivo.setAttribute("name", "arquivoDocumento");
-    textButtonArquivo.setAttribute("id", textButtonArquivoID)
+    // arquivo.setAttribute("id", arquivoID);
+    arquivo.setAttribute("type", "file");
+    arquivo.setAttribute("name", "arquivoDocumento");
+    arquivo.setAttribute("accept", ".pdf");
+    // arquivo_path.setAttribute("id", arquivo_pathID)
 
-    labelButtonArquivo.innerText = "Selecione o arquivo";
+    arquivo_label.innerText = "Selecione o arquivo";
 
     //Adicionando classes e propriedades para o botão de adicionar
-    divPlusIcon.classList.add("col-md-1", "order-first", "input-wrap");
-    divPlusIcon.setAttribute("onclick", "addEmailField()");
-    plusIcon.classList.add("more-icon");
+    addIcon_div.classList.add("col-md-1", "default-padding");
+    addIcon.classList.add("add-icon");
+
+    addIcon_div.setAttribute("onclick", "adicionarLinhaDocumentos()");
 
     //Adicionando classes e propriedades para o botão de deletar
-    divLessIcon.classList.add("col-md-1", "order-first", "input-wrap");
+    lessIcon_div.classList.add("col-md-1", "default-padding");
     lessIcon.classList.add("less-icon");
 
     //Hierarquia de inserções
-    divNomeDocumento.appendChild(labelNomeDocumento);
-    labelNomeDocumento.appendChild(nomeDocumento);
-    nomeDocumento.appendChild(termoAdesao);
-    nomeDocumento.appendChild(contratoServicos);
+    nomeDocumento_div.appendChild(nomeDocumento_label);
+    nomeDocumento_label.appendChild(nomeDocumento);
+    nomeDocumento.appendChild(nomeDocumento_termoAdesao);
+    nomeDocumento.appendChild(nomeDocumento_contratoServicos);
 
-    divDescricaoDocumento.appendChild(labelDescricaoDocumento);
-    labelDescricaoDocumento.appendChild(descricaoDocumento);
+    descricaoDocumento_div.appendChild(descricaoDocumento_label);
+    descricaoDocumento_label.appendChild(descricaoDocumento);
 
-    divButtonArquivo.appendChild(labelButtonArquivo);
-    labelButtonArquivo.appendChild(buttonArquivo);
-    divButtonArquivo.appendChild(textButtonArquivo);
+    arquivo_div.appendChild(arquivo_label);
+    arquivo_label.appendChild(arquivo);
+    arquivo_div.appendChild(arquivo_path);
 
-    divPlusIcon.appendChild(plusIcon);
+    addIcon_div.appendChild(addIcon);
 
-    divLessIcon.appendChild(lessIcon);
+    lessIcon_div.appendChild(lessIcon);
 
     //Inserir os elementos na div 'row'
-    row.appendChild(divNomeDocumento);
-    row.appendChild(divDescricaoDocumento);
-    row.appendChild(divButtonArquivo);
-    row.appendChild(divPlusIcon);
-    row.appendChild(divLessIcon);
+    row.appendChild(nomeDocumento_div);
+    row.appendChild(descricaoDocumento_div);
+    row.appendChild(arquivo_div);
+    row.appendChild(addIcon_div);
+    row.appendChild(lessIcon_div);
 
     //Inserir os elementos no DOM
-    form.appendChild(row);
-    divLessIcon.addEventListener("click", removeEmailField);
+    form_documentos.appendChild(row);
 
-    //Mostrar o nome na tag <p> abaixo do botão de selecionar arquivo
-    if (fileID != 0) {
-        document.getElementById(buttonArquivoID).onchange = function () {
-            var value = this.value;
-            var path = value.match(/[^\\/]*$/)[0];
-            document.getElementById(textButtonArquivoID).innerHTML = path;
-            console.log(this.files[0]);
-        }
-    }
+    lessIcon_div.addEventListener("click", removerLinhaDocumentos);
 }
 
-//Remover as linhas desnecessárias de documentos
-function removeEmailField(e) {
+function removerLinhaDocumentos(e) {
     const element = e.target.parentElement;
     const row = element.parentElement;
 
+    qtdDocumentos--;
     row.remove();
+}
+
+function obterDadosDocumentos() {
+    
+    const formElements = document.forms["documentos_form"].elements;
+
+    const dadosDocumentos = [];
+
+    if (qtdDocumentos > 1) {
+        for (let i = 0; i < qtdDocumentos; i++) {
+
+            dadosDocumentos.push({
+                type: formElements.type[i].value,
+                description: formElements.description[i].value,
+                file: formElements.arquivoDocumento[i].files[0]
+            })
+        }
+    } else {
+        dadosDocumentos.push({
+            type: formElements.type.value,
+            description: formElements.description.value,
+            file: formElements.arquivoDocumento.files[0]
+        })
+    }
+
+    return dadosDocumentos;
 }

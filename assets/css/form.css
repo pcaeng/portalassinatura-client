@@ -1,8 +1,4 @@
-.input-wrap {
-    padding-bottom: 12.5px;
-}
-
-input, select, textarea {
+input, select {
     width: 100%;
     color: #134E88;
     font-family: 'Montserrat';
@@ -20,6 +16,7 @@ input, select, textarea {
     border: none;
     text-transform: uppercase;
 }
+
 .input-secondary {
     border: 1px solid #134E88;
 }
@@ -32,6 +29,7 @@ input, select, textarea {
     line-height: 15px;
     color: #134E88;
 }
+
 .input-primary::placeholder {
     text-transform: uppercase;
 }

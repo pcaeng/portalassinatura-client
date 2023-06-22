@@ -1,86 +1,82 @@
-//TODO: ID dinâmico para fazer o input type="file" funcionar.
+let qtdAssinantes = 1;
 
-var nomeID = 0;
-var emailID = 0;
-var cpfID = 0;
-var birthdateID = 0;
-var nomeDocID = 0;
-var parteID = 0;
-var fileID = 0;
+async function carregaOptionsParty() {
+    const response = await GetParty();
 
-var nomeAssinanteID = `cus-name${nomeID}`;
-var emailAssinanteID = `cus-email${emailID}`;
-var cpfAssinanteID = `cus-cpf${cpfID}`;
-var birthdateAssinanteID = `cus-birth${birthdateID}`;
-var nomeDocAssinanteID = `cus-nameDoc${nomeDocID}`;
-var parteAssinanteID = `cus-party${parteID}`;
-var buttonArquivoAssinanteID = `sub-fileName${fileID}`;
-var textArquivoAssinanteID = `sub-fileName${fileID}-value`;
+    return response.data;
+}
+
+function montaOptionsParty(select, parties) {
+    parties.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.partyId;
+        option.textContent = item.name;
+        select.appendChild(option);
+    });
+}
+
+const partySelect = document.getElementById("cus-party0");
+let parties = [];
+
+carregaOptionsParty().then((result) => {
+    montaOptionsParty(partySelect, result);
+    parties = result;
+});
 
 function addSubscriptionField() {
 
-    //Incrementação das variáveis dinâmicas, para que novos IDS sejam atribuídos
-    nomeID++; emailID++; cpfID++; birthdateID++; nomeDocID++; parteID++; fileID++;
+    qtdAssinantes++;
 
-    const nomeAssinanteID = `cus-name${nomeID}`;
-    const emailAssinanteID = `cus-email${emailID}`;
-    const cpfAssinanteID = `cus-cpf${cpfID}`;
-    const birthdateAssinanteID = `cus-birth${birthdateID}`;
-    const nomeDocAssinanteID = `cus-nameDoc${nomeDocID}`;
-    const parteAssinanteID = `cus-party${parteID}`;
-    const buttonArquivoAssinanteID = `sub-fileName${fileID}`;
-    const textArquivoAssinanteID = `sub-fileName${fileID}-value`;
+    const form_assinaturas = document.getElementById("assinaturas");
 
-    const form = document.getElementById("subscription-container");
-
+    //Criando os elementos
     const container = document.createElement("div")
 
     const br = document.createElement("br");
 
-    //Criando os elementos
     const firstRow = document.createElement("div");
     const secondRow = document.createElement("div");
 
-    const divNomeAssinante = document.createElement("div");
-    const labelNomeAssinante = document.createElement("label");
+    const nomeAssinante_div = document.createElement("div");
+    const nomeAssinante_label = document.createElement("label");
     const nomeAssinante = document.createElement("input");
 
-    const divEmail = document.createElement("div");
-    const labelEmail = document.createElement("label");
-    const email = document.createElement("input");
+    const emailAssinante_div = document.createElement("div");
+    const emailAssinante_label = document.createElement("label");
+    const emailAssinante = document.createElement("input");
 
-    const divCpf = document.createElement("div");
-    const labelCpf = document.createElement("label");
-    const cpf = document.createElement("input");
+    const cpfAssinante_div = document.createElement("div");
+    const cpfAssinante_label = document.createElement("label");
+    const cpfAssinante = document.createElement("input");
 
-    const divDataNascimento = document.createElement("div");
-    const labelDataNascimento = document.createElement("label");
+    const dataNascimento_div = document.createElement("div");
+    const dataNascimento_label = document.createElement("label");
     const dataNascimento = document.createElement("input");
 
-    const divNomeDocumento = document.createElement("div");
-    const labelNomeDocumento = document.createElement("label");
-    const nomeDocumento = document.createElement("select");
-    const rg = document.createElement("option");
-    const cpfOp = document.createElement("option");
-    const cnh = document.createElement("option");
+    const nomeDocumentoAssinante_div = document.createElement("div");
+    const nomeDocumentoAssinante_label = document.createElement("label");
+    const nomeDocumentoAssinante = document.createElement("select");
+    const nomeDocumentoAssinante_rg = document.createElement("option");
+    const nomeDocumentoAssinante_cpf = document.createElement("option");
+    const nomeDocumentoAssinante_cnh = document.createElement("option");
 
-    const divParte = document.createElement("div");
-    const labelParte = document.createElement("label");
-    const parte = document.createElement("select");
+    const parteAssinante_div = document.createElement("div");
+    const parteAssinante_label = document.createElement("label");
+    const parteAssinante = document.createElement("select");
 
-    const divButtonArquivo = document.createElement("div");
-    const labelButtonArquivo = document.createElement("label");
-    const buttonArquivo = document.createElement("input");
+    const arquivo_div = document.createElement("div");
+    const arquivo_label = document.createElement("label");
+    const arquivo = document.createElement("input");
 
-    const divTextButtonArquivo = document.createElement("div");
-    const textButtonArquivo = document.createElement("p");
+    const arquivo_path_div = document.createElement("div");
+    const arquivo_path = document.createElement("p");
 
-    const divIcons = document.createElement("div");
+    const icons_div = document.createElement("div");
 
-    const divPlusIcon = document.createElement("div");
-    const plusIcon = document.createElement("i");
+    const addIcon_div = document.createElement("div");
+    const addIcon = document.createElement("i");
 
-    const divLessIcon = document.createElement("div");
+    const lessIcon_div = document.createElement("div");
     const lessIcon = document.createElement("i");
 
     //Adicionando a classe 'row' para as divs
@@ -88,167 +84,194 @@ function addSubscriptionField() {
     secondRow.classList.add("row");
 
     //Adicionando classes e propriedades para o campo "Nome do assinante"
-    divNomeAssinante.classList.add("col-md-4", "order-first", "input-wrap");
-    labelNomeAssinante.classList.add("user-icon");
+    nomeAssinante_div.classList.add("col-md-4", "default-padding");
+    nomeAssinante_label.classList.add("user-icon");
     nomeAssinante.classList.add("input-primary");
 
-    nomeAssinante.setAttribute("placeholder", "NOME DO ASSINANTE");
+    nomeAssinante.setAttribute("placeholder", "Nome do assinante");
     nomeAssinante.setAttribute("name", "name");
-    nomeAssinante.setAttribute("id", nomeAssinanteID);
+    // nomeAssinante.setAttribute("id", nomeAssinanteID);
 
     //Adicionando classes e propriedades para o campo "E-mail"
-    divEmail.classList.add("col-md-4", "order-first", "input-wrap");
-    labelEmail.classList.add("email-icon");
-    email.classList.add("input-primary");
+    emailAssinante_div.classList.add("col-md-4", "default-padding");
+    emailAssinante_label.classList.add("email-icon");
+    emailAssinante.classList.add("input-primary");
 
-    email.setAttribute("placeholder", "E-MAIL");
-    email.setAttribute("name", "email");
-    email.setAttribute("id", emailAssinanteID);
+    emailAssinante.setAttribute("placeholder", "E-mail do assinante");
+    emailAssinante.setAttribute("name", "email");
+    // emailAssinante.setAttribute("id", emailAssinanteID);
 
     //Adicionando classes e propriedades para o campo "CPF"
-    divCpf.classList.add("col-md-4", "order-first", "input-wrap");
-    labelCpf.classList.add("cpf-icon");
-    cpf.classList.add("input-primary");
+    cpfAssinante_div.classList.add("col-md-4", "default-padding");
+    cpfAssinante_label.classList.add("cpf-icon");
+    cpfAssinante.classList.add("input-primary");
 
-    cpf.setAttribute("placeholder", "CPF");
-    cpf.setAttribute("name", "cpf");
-    cpf.setAttribute("id", cpfAssinanteID);
+    cpfAssinante.setAttribute("placeholder", "CPF do assinante");
+    cpfAssinante.setAttribute("name", "cpf");
+    // cpfAssinante.setAttribute("id", cpfAssinanteID);
 
     //Adicionando classes e propriedades para o campo "Data de nascimento"
-    divDataNascimento.classList.add("col-md-4", "order-first", "input-wrap");
-    labelDataNascimento.classList.add("calendar-icon");
+    dataNascimento_div.classList.add("col-md-4", "default-padding");
+    dataNascimento_label.classList.add("calendar-icon");
     dataNascimento.classList.add("input-primary");
 
-    dataNascimento.setAttribute("placeholder", "DATA DE NASCIMENTO");
     dataNascimento.setAttribute("name", "birthdate");
     dataNascimento.setAttribute("type", "date");
-    dataNascimento.setAttribute("id", birthdateAssinanteID);
+    // dataNascimento.setAttribute("id", birthdateAssinanteID);
 
     //Adicionando classes e propriedades para o campo "Nome do documento"
-    divNomeDocumento.classList.add("col-md-4", "order-first", "input-wrap");
-    labelNomeDocumento.classList.add("document-icon");
-    nomeDocumento.classList.add("input-primary");
+    nomeDocumentoAssinante_div.classList.add("col-md-4", "default-padding");
+    nomeDocumentoAssinante_label.classList.add("document-icon");
+    nomeDocumentoAssinante.classList.add("input-primary");
 
-    nomeDocumento.setAttribute("placeholder", "NOME DO DOCUMENTO");
-    nomeDocumento.setAttribute("name", "name");
-    nomeDocumento.setAttribute("id", nomeDocAssinanteID);
-    rg.setAttribute("value", "RG");
-    cpfOp.setAttribute("value", "CPF");
-    cnh.setAttribute("value", "CNH");
+    nomeDocumentoAssinante.setAttribute("name", "tipoDocumento");
+    // nomeDocumentoAssinante.setAttribute("id", nomeDocAssinanteID);
+    nomeDocumentoAssinante_rg.setAttribute("value", "RG");
+    nomeDocumentoAssinante_cpf.setAttribute("value", "CPF");
+    nomeDocumentoAssinante_cnh.setAttribute("value", "CNH");
+
+    nomeDocumentoAssinante_rg.innerText = "RG";
+    nomeDocumentoAssinante_cpf.innerText = "CPF";
+    nomeDocumentoAssinante_cnh.innerText = "CNH";
 
     //Adicionando classes e propriedades para o campo "Parte"
-    divParte.classList.add("col-md-4", "order-first", "input-wrap");
-    labelParte.classList.add("document-icon");
-    parte.classList.add("input-primary");
+    parteAssinante_div.classList.add("col-md-4", "default-padding");
+    parteAssinante_label.classList.add("document-icon");
+    parteAssinante.classList.add("input-primary");
 
-    parte.setAttribute("placeholder", "PARTE");
-    parte.setAttribute("name", "partyId");
-    parte.setAttribute("id", parteAssinanteID);
+    parteAssinante.setAttribute("name", "partyId");
+    // parteAssinante.setAttribute("id", parteAssinanteID);
+
+    montaOptionsParty(parteAssinante, parties);
 
     //Adicionando classes e propriedades para o campo "Selecione o arquivo"
-    divButtonArquivo.classList.add("col-md-4", "order-first", "input-wrap");
-    labelButtonArquivo.classList.add("file-button");
-    buttonArquivo.classList.add("d-none");
-    buttonArquivo.classList.add("file-input");
+    arquivo_div.classList.add("col-md-4", "default-padding");
+    arquivo_label.classList.add("file-button");
+    arquivo.classList.add("d-none");
 
-    divTextButtonArquivo.classList.add("col-md-4", "order-first", "input-wrap", "d-flex", "align-items-center")
-    textButtonArquivo.classList.add("file-button-text");
-    textButtonArquivo.classList.add("file-value");
+    arquivo_path_div.classList.add("col-md-4", "default-padding", "d-flex", "align-items-center")
 
-    buttonArquivo.setAttribute("id", buttonArquivoAssinanteID);
-    buttonArquivo.setAttribute("type", "file");
-    buttonArquivo.setAttribute("name", "arquivoAssinatura");
+    arquivo_path.classList.add("file-button-text");
 
-    textButtonArquivo.setAttribute("id", textArquivoAssinanteID)
+    // arquivo.setAttribute("id", buttonArquivoAssinanteID);
+    arquivo.setAttribute("type", "file");
+    arquivo.setAttribute("name", "arquivoAssinatura");
+    arquivo.setAttribute("accept", ".png");
+    arquivo.setAttribute("accept", ".jpg");
+    arquivo.setAttribute("accept", ".jpeg");
 
-    labelButtonArquivo.innerText = "Selecione o arquivo";
+    // arquivo_path.setAttribute("id", textArquivoAssinanteID)
+
+    arquivo_label.innerText = "Selecione o arquivo";
+
+    //Adicionando classes e propriedades para a div dos botões
+    icons_div.classList.add("col-md-4", "default-padding", "d-flex", "justify-content-end");
 
     //Adicionando classes e propriedades para o botão de adicionar
-    divIcons.classList.add("col-md-4", "order-first", "input-wrap", "d-flex", "justify-content-end");
-
-    //Adicionando classes e propriedades para o botão de adicionar
-    divPlusIcon.classList.add("order-first", "input-wrap");
-    divPlusIcon.setAttribute("onclick", "addSubscriptionField()");
-    plusIcon.classList.add("more-icon");
+    addIcon_div.classList.add("default-padding");
+    addIcon_div.setAttribute("onclick", "addSubscriptionField()");
+    addIcon.classList.add("add-icon");
 
     //Adicionando classes e propriedades para o botão de deletar
-    divLessIcon.classList.add("order-first", "input-wrap");
-    divLessIcon.style.marginLeft = "20px"
+    lessIcon_div.classList.add("default-padding");
+    lessIcon_div.style.marginLeft = "20px"
     lessIcon.classList.add("less-icon");
 
     //Hierarquia de inserções
-    divNomeAssinante.appendChild(labelNomeAssinante);
-    labelNomeAssinante.appendChild(nomeAssinante);
+    nomeAssinante_div.appendChild(nomeAssinante_label);
+    nomeAssinante_label.appendChild(nomeAssinante);
 
-    divEmail.appendChild(labelEmail);
-    labelEmail.appendChild(email);
+    emailAssinante_div.appendChild(emailAssinante_label);
+    emailAssinante_label.appendChild(emailAssinante);
 
-    divCpf.appendChild(labelCpf);
-    labelCpf.appendChild(cpf);
+    cpfAssinante_div.appendChild(cpfAssinante_label);
+    cpfAssinante_label.appendChild(cpfAssinante);
 
-    divDataNascimento.appendChild(labelDataNascimento);
-    labelDataNascimento.appendChild(dataNascimento);
+    dataNascimento_div.appendChild(dataNascimento_label);
+    dataNascimento_label.appendChild(dataNascimento);
 
-    divNomeDocumento.appendChild(labelNomeDocumento);
-    labelNomeDocumento.appendChild(nomeDocumento);
-    nomeDocumento.appendChild(rg);
-    nomeDocumento.appendChild(cpfOp);
-    nomeDocumento.appendChild(cnh);
+    nomeDocumentoAssinante_div.appendChild(nomeDocumentoAssinante_label);
+    nomeDocumentoAssinante_label.appendChild(nomeDocumentoAssinante);
+    nomeDocumentoAssinante.appendChild(nomeDocumentoAssinante_rg);
+    nomeDocumentoAssinante.appendChild(nomeDocumentoAssinante_cpf);
+    nomeDocumentoAssinante.appendChild(nomeDocumentoAssinante_cnh);
 
-    divParte.appendChild(labelParte);
-    labelParte.appendChild(parte);
+    parteAssinante_div.appendChild(parteAssinante_label);
+    parteAssinante_label.appendChild(parteAssinante);
 
-    divButtonArquivo.appendChild(labelButtonArquivo);
-    divButtonArquivo.appendChild(buttonArquivo);
+    arquivo_div.appendChild(arquivo_label);
+    arquivo_label.appendChild(arquivo);
 
-    divTextButtonArquivo.appendChild(textButtonArquivo);
+    arquivo_path_div.appendChild(arquivo_path);
 
-    divPlusIcon.appendChild(plusIcon);
-    divLessIcon.appendChild(lessIcon);
+    addIcon_div.appendChild(addIcon);
+    lessIcon_div.appendChild(lessIcon);
 
-    divIcons.appendChild(divPlusIcon);
-    divIcons.appendChild(divLessIcon);
+    icons_div.appendChild(addIcon_div);
+    icons_div.appendChild(lessIcon_div);
 
-    //Inserir os elementos na div 'firstRow'
-    firstRow.appendChild(divNomeAssinante);
-    firstRow.appendChild(divEmail);
-    firstRow.appendChild(divCpf);
+    //Inserir os elementos nas respectivas divs
+    firstRow.appendChild(nomeAssinante_div);
+    firstRow.appendChild(emailAssinante_div);
+    firstRow.appendChild(cpfAssinante_div);
 
-    //Inserir os elementos na div 'secondRow'
-    secondRow.appendChild(divDataNascimento);
-    secondRow.appendChild(divNomeDocumento);
-    secondRow.appendChild(divParte);
-    secondRow.appendChild(divButtonArquivo);
-    secondRow.appendChild(divTextButtonArquivo);
-    secondRow.appendChild(divIcons);
+    secondRow.appendChild(dataNascimento_div);
+    secondRow.appendChild(nomeDocumentoAssinante_div);
+    secondRow.appendChild(parteAssinante_div);
+    secondRow.appendChild(arquivo_div);
+    secondRow.appendChild(arquivo_path_div);
+    secondRow.appendChild(icons_div);
 
-    //Encapsular os elementos para que o 'lessIcon' remova as duas linhas
     container.appendChild(br);
     container.appendChild(firstRow);
     container.appendChild(secondRow);
 
-    form.append(container);
-
     //Inserir os elementos no DOM
-    divLessIcon.addEventListener("click", removeSubscriptionField);
+    form_assinaturas.append(container);
 
-    //Mostrar o nome na tag <p> abaixo do botão de selecionar arquivo
-    if (fileID != 0) {
-        document.getElementById(buttonArquivoID).onchange = function () {
-            var value = this.value;
-            var path = value.match(/[^\\/]*$/)[0];
-            document.getElementById(textButtonArquivoID).innerHTML = path;
-            console.log(this.files[0]);
-        }
-    }
+    lessIcon_div.addEventListener("click", removeSubscriptionField);
 }
 
-//Remover as linhas desnecessárias de assinaturas
 function removeSubscriptionField(e) {
     const element = e.target.parentElement;
     const div = element.parentElement;
     const row = div.parentElement;
     const container = row.parentElement;
 
+    qtdAssinantes--;
     container.remove();
+}
+
+function obterDadosAssinaturas() {
+    
+    const formElements = document.forms["assinaturas_form"].elements;
+
+    const dadosAssinantes = [];
+
+    if (qtdAssinantes > 1) {
+        for (let i = 0; i < qtdAssinantes; i++) {
+
+            dadosAssinantes.push({
+                name: formElements.name[i].value,
+                email: formElements.email[i].value,
+                cpf: formElements.cpf[i].value,
+                birthdate: formElements.birthdate[i].value,
+                tipoDocumento: formElements.tipoDocumento[i].value,
+                partyId: formElements.partyId[i].value,
+                file: formElements.arquivoAssinatura[i].files[0]
+            })
+        }
+    } else {
+        dadosAssinantes.push({
+            name: formElements.name.value,
+            email: formElements.email.value,
+            cpf: formElements.cpf.value,
+            birthdate: formElements.birthdate.value,
+            tipoDocumento: formElements.tipoDocumento.value,
+            partyId: formElements.partyId.value,
+            file: formElements.arquivoAssinatura.files[0]
+        })
+    }
+
+    return dadosAssinantes;
 }

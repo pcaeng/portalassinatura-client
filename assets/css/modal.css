@@ -22,12 +22,6 @@
     color: black;
 }
 
-.checkbox {
-    display: flex;
-    flex-direction: row;
-    margin-top: 15px;
-}
-
 .checkbox__item {
     display: flex;
     flex-direction: row;
@@ -36,17 +30,20 @@
     align-content: center;
 }
 
-.ml {
-    margin-left: 25px;
-}
-
 .checkbox__item--input {
     width: 20px;
     height: 20px;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .checkbox__item--label {
     font-size: 16px;
     color: black;
+    width: fit-content;
+}
+
+.combo-titles {
+    color: black;
+    font-size: 24px;
 }

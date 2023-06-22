@@ -9,7 +9,7 @@
     border: 4px solid rgba(255, 255, 255, 0.2);
     border-top-color: #ffffff;
     animation: spin 1s ease-in-out infinite;
-    z-index: 10000; /* Certifique-se de que o z-index seja maior que o backdrop */
+    z-index: 10000;
 }
   
 @keyframes spin {

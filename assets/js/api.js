@@ -3,7 +3,6 @@ const baseUrl = 'https://localhost:7178/api';
 var accessToken = '';
 
 const Authenticate = async (xApiKey) => {
-    // Chama a função 'post' da API para autenticação
     const response = await customFetch(`${baseUrl}/Authentication`, {
         method: 'POST',
         headers: new Headers({
@@ -19,7 +18,6 @@ const Authenticate = async (xApiKey) => {
 };
 
 const AddSignature = async (signature) => {
-    // Chama a função 'post' da API para adicionar uma assinatura
     return await customFetch(`${baseUrl}/Signature`, {
         method: 'POST',
         headers: new Headers({
@@ -47,6 +45,7 @@ const UploadSignatureDocuments = async (signatureId, documentId, document) => {
 };
 
 const UpdateSignatureStatus = async (signatureId, status) => {
+
     return await customFetch(`${baseUrl}/Signature/${signatureId}?status=${status}`, {
         method: 'PATCH',
         headers: new Headers({
