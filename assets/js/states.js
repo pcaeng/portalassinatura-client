@@ -25,7 +25,6 @@ function obterSignatureType(configuracoes) {
 }
 
 function obterDocumentoSolicitado(identificadorDocumento, dadosFormularios) {
-  debugger;
   const documentos = dadosFormularios.documentos;
   const assinaturas = dadosFormularios.assinaturas;
 
@@ -94,7 +93,6 @@ function obterDadosCriacaoAssinatura(dadosFormularios) {
     customers: obterCustomers(dadosFormularios)
   }
 
-  console.log(dadosCriacaoAssinatura)
   return dadosCriacaoAssinatura;
 }
 
@@ -110,44 +108,47 @@ const handleSubmit = () => {
     .then(() => {
       AddSignature(dadosCriacaoAssinatura)
         .then((resp) => {
-          console.log(resp.data)
-          console.log('Assinatura adicionada', 'success');
-          const { signatureId, documents } = resp.data;
+          if (resp.success == false) {
+            alert('Preencha todos os campos antes de iniciar a assinatura.');
+          } else {
+            console.log('Assinatura adicionada com sucesso');
+            
+            const { signatureId, documents } = resp.data;
 
-          const promisses = [];
+            const promisses = [];
 
-          documents.forEach((doc) => {
+            documents.forEach((doc) => {
 
-            const document = obterDocumentoSolicitado(doc.name, dadosFormularios);
+              const document = obterDocumentoSolicitado(doc.name, dadosFormularios);
 
-            if (document) {
-              promisses.push(
-                UploadSignatureDocuments(signatureId, doc.documentId, document.file)
-                  .then(() => {
-                    debugger;
-                    console.log(`Upload do documento "${doc.name}" realizado`, 'success');
-                  })
-                  .catch((err) => {
-                    console.log(`Falha ao fazer o upload do documento "${doc.name}"`, 'error');
-                  })
-              )
-            }
-          });
-          Promise.all(promisses).then(() => {
-            UpdateSignatureStatus(signatureId, 'Requested')
-              .then(() => {
-                console.log('Status da assinatura alterado para requisitado', 'success');
-              })
-              .catch((err) => {
-                console.log('Falha ao atualizar o status da assinatura', 'error');
-              });
-          })
+              if (document) {
+                promisses.push(
+                  UploadSignatureDocuments(signatureId, doc.documentId, document.file)
+                    .then(() => {
+                      console.log(`Upload do documento "${doc.name}" realizado`);
+                    })
+                    .catch((err) => {
+                      console.log(`Falha ao fazer o upload do documento "${doc.name}"`);
+                    })
+                )
+              }
+            });
+            Promise.all(promisses).then(() => {
+              UpdateSignatureStatus(signatureId, 'Requested')
+                .then(() => {
+                  console.log('Status da assinatura alterado para requisitado');
+                })
+                .catch((err) => {
+                  console.log('Falha ao atualizar o status da assinatura');
+                });
+            })
+          }
         })
         .catch((err) => {
-          console.log('Falha ao adicionar a assinatura', 'error');
+          console.log('Falha ao adicionar a assinatura, verifique as informações que estão sendo enviadas');
         });
     })
     .catch((err) => {
-      console.log('Autenticação falhou', 'warning');
+      console.log('Autenticação falhou, verifique a credencial do método de autenticação');
     });
 };
