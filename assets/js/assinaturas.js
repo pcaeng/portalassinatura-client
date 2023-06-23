@@ -1,5 +1,13 @@
 let qtdAssinantes = 1;
 
+const arquivo_sub = document.getElementById("sub-fileName0");
+
+const arquivo_path_sub = document.getElementById("sub-fileName0-value");
+
+arquivo_sub.onchange = function () {
+    arquivo_path_sub.innerText = arquivo_sub.files[0].name;
+}
+
 async function carregaOptionsParty() {
     const response = await GetParty();
 
@@ -163,6 +171,10 @@ function addSubscriptionField() {
     // arquivo_path.setAttribute("id", textArquivoAssinanteID)
 
     arquivo_label.innerText = "Selecione o arquivo";
+
+    arquivo.onchange = function () {
+        arquivo_path.innerText = arquivo.files[0].name;
+    }
 
     //Adicionando classes e propriedades para a div dos botões
     icons_div.classList.add("col-md-4", "default-padding", "d-flex", "justify-content-end");

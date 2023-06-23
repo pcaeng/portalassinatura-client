@@ -5,6 +5,14 @@
 
 let qtdDocumentos = 1;
 
+const arquivo = document.getElementById("doc-fileName0");
+
+const arquivo_path = document.getElementById("doc-fileName0-value");
+
+arquivo.onchange = function () {
+    arquivo_path.innerText = arquivo.files[0].name;
+}
+
 function adicionarLinhaDocumentos() {
 
     qtdDocumentos++;
@@ -77,6 +85,10 @@ function adicionarLinhaDocumentos() {
     // arquivo_path.setAttribute("id", arquivo_pathID)
 
     arquivo_label.innerText = "Selecione o arquivo";
+
+    arquivo.onchange = function () {
+        arquivo_path.innerText = arquivo.files[0].name;
+    }
 
     //Adicionando classes e propriedades para o botão de adicionar
     addIcon_div.classList.add("col-md-1", "default-padding");
