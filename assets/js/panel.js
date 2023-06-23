@@ -43,13 +43,17 @@ function voltarParaPrimeiroPainel() {
     firstStepElement.hidden = false;
 }
 
-function showEmbeddedPortal(signatureId) {
+function showEmbeddedPortal(signatureId, length, cpf, birthdate) {
     const main = document.getElementById("main");
     main.hidden = true;
 
     const embeddedPortal_div = document.getElementById("panel-embedded");
     const embeddedPortal = document.getElementById("pca-signature");
     embeddedPortal.setAttribute("data-pca-signature-id", signatureId);
+
+    if (length == 1) {
+        embeddedPortal.setAttribute("data-pca-signature-info", `{ "cpf":"${cpf}", "birthdate":"${birthdate}" }`);
+    }
 
     embeddedPortal_div.hidden = false;
 }

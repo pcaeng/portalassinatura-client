@@ -99,7 +99,6 @@ const handleSubmit = () => {
 
   const dadosCriacaoAssinatura = obterDadosCriacaoAssinatura(dadosFormularios);
 
-
   Authenticate('dev.api-key')
     .then(() => {
       AddSignature(dadosCriacaoAssinatura)
@@ -136,13 +135,14 @@ const handleSubmit = () => {
             Promise.all(promisses).then(() => {
               UpdateSignatureStatus(signatureId, 'Requested')
                 .then(() => {
+
                   console.log('Status da assinatura alterado para requisitado');
 
                   if (dadosCriacaoAssinatura.signature.place == 'SignaturePortal') {
                     alert('Assinatura adicionada com sucesso');
                   } else {
                     alert('Assinatura adicionada com sucesso');
-                    showEmbeddedPortal(signatureId);
+                    showEmbeddedPortal(signatureId, dadosCriacaoAssinatura.customers.length, dadosCriacaoAssinatura.customers[0].cpf, dadosCriacaoAssinatura.customers[0].birthdate);
                   }
                 })
                 .catch((err) => {
