@@ -58,7 +58,7 @@ const emptySignature = {
 
 ```
 const emptyCustomer = {
-  partyId: '4BFBFB1A-416F-4FF7-984C-1EEC705091F6',
+  partyId: '',
   name: '',
   email: '',
   cpf: '',

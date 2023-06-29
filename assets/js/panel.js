@@ -44,8 +44,8 @@ function voltarParaPrimeiroPainel() {
 }
 
 function showEmbeddedPortal(signatureId, length, cpf, birthdate) {
-    // const main = document.getElementById("main");
-    // main.hidden = true;
+    const lastStepElement = document.getElementById("panel-3");
+    lastStepElement.hidden = true;
 
     const embeddedPortal_div = document.getElementById("panel-embedded");
     const embeddedPortal = document.getElementById("pca-signature");
