@@ -1,0 +1,7 @@
+#panel-embedded #pca-signature .MuiGrid-root.MuiGrid-container {
+    background-color: transparent !important;
+}
+
+#panel-embedded #pca-signature .MuiGrid-root.MuiGrid-container .MuiGrid-item {
+    background-color: #eceff1 !important;
+}

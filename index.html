@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="./assets/css/form.css" />
     <link rel="stylesheet" href="./assets/css/load.css" />
     <link rel="stylesheet" href="./assets/css/modal.css" />
+    <link rel="stylesheet" href="./assets/css/embedded.css" />
   </head>
 
   <body>
@@ -321,10 +322,8 @@
       </div>
 
       <!-- Portal de assinaturas - Embedded -->
-      <div id="panel-embedded" hidden>
-        <div
-          id="pca-signature"
-        ></div>
+      <div id="panel-embedded" class="backdrop" hidden>
+        <div id="pca-signature"></div>
       </div>
 
       <!-- Rodapé -->
@@ -448,11 +447,11 @@
     <script
       defer="defer"
       src="https://stage3.pca.com.br/PortalAssinatura/cdn/pca-signature.js"
-      ></script>
-      <script defer="defer" src="./assets/js/panel.js"></script>
-      <script defer="defer" src="./assets/js/customFetch.js"></script>
-      <script defer="defer" src="./assets/js/api.js"></script>
-      <script defer="defer" src="./assets/js/states.js"></script>
+    ></script>
+    <script defer="defer" src="./assets/js/panel.js"></script>
+    <script defer="defer" src="./assets/js/customFetch.js"></script>
+    <script defer="defer" src="./assets/js/api.js"></script>
+    <script defer="defer" src="./assets/js/states.js"></script>
     <script defer="defer" src="./assets/js/documents.js"></script>
     <script defer="defer" src="./assets/js/assinaturas.js"></script>
     <script defer="defer" src="./assets/js/configuracoes.js"></script>
