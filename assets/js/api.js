@@ -1,9 +1,9 @@
-const baseUrl = 'https://localhost:7178/api';
+const baseUrl = 'https://stage3.pca.com.br/PortalAssinatura/api';
 
 var accessToken = '';
 
 const Authenticate = async (xApiKey) => {
-    const response = await customFetch(`${baseUrl}/Authentication`, {
+    const response = await customFetch(`${baseUrl}/api/Authentication`, {
         method: 'POST',
         headers: new Headers({
             'x-api-key': xApiKey
@@ -18,7 +18,7 @@ const Authenticate = async (xApiKey) => {
 };
 
 const AddSignature = async (signature) => {
-    return await customFetch(`${baseUrl}/Signature`, {
+    return await customFetch(`${baseUrl}/api/Signature`, {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json; charset=UTF-8',
@@ -35,7 +35,7 @@ const UploadSignatureDocuments = async (signatureId, documentId, document) => {
 
     form.append('document', document);
 
-    return await customFetch(`${baseUrl}/Signature/${signatureId}/Document/${documentId}`, {
+    return await customFetch(`${baseUrl}/api/Signature/${signatureId}/Document/${documentId}`, {
         method: 'PATCH',
         headers: new Headers({
             Authorization: `Bearer ${accessToken}`
@@ -46,7 +46,7 @@ const UploadSignatureDocuments = async (signatureId, documentId, document) => {
 
 const UpdateSignatureStatus = async (signatureId, status) => {
 
-    return await customFetch(`${baseUrl}/Signature/${signatureId}?status=${status}`, {
+    return await customFetch(`${baseUrl}/api/Signature/${signatureId}?status=${status}`, {
         method: 'PATCH',
         headers: new Headers({
             Authorization: `Bearer ${accessToken}`
@@ -55,7 +55,7 @@ const UpdateSignatureStatus = async (signatureId, status) => {
 };
 
 const GetParty = async () => {
-    return await customFetch(`${baseUrl}/Party`, {
+    return await customFetch(`${baseUrl}/api/Party`, {
         method: 'GET'
     })
 }
