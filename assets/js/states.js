@@ -99,7 +99,7 @@ const handleSubmit = () => {
 
   const dadosCriacaoAssinatura = obterDadosCriacaoAssinatura(dadosFormularios);
 
-  Authenticate('pca.04042023')
+  Authenticate('gitdemonstracao.03082023')
     .then(() => {
       AddSignature(dadosCriacaoAssinatura)
         .then((resp) => {
