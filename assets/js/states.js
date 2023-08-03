@@ -99,7 +99,7 @@ const handleSubmit = () => {
 
   const dadosCriacaoAssinatura = obterDadosCriacaoAssinatura(dadosFormularios);
 
-  Authenticate('dev.api-key')
+  Authenticate('pca.04042023')
     .then(() => {
       AddSignature(dadosCriacaoAssinatura)
         .then((resp) => {
