@@ -51,9 +51,14 @@ function showEmbeddedPortal(signatureId, length, cpf, birthdate) {
     const embeddedPortal = document.getElementById("pca-signature");
     embeddedPortal.setAttribute("data-pca-signature-id", signatureId);
 
+
     if (length == 1) {
         embeddedPortal.setAttribute("data-pca-signature-info", `{ "cpf":"${cpf}", "birthdate":"${birthdate}" }`);
-    }
-
+    }  
+    const script = document.createElement("script");
+    script.setAttribute("defer", "defer");
+    script.setAttribute("src", "https://stage3.pca.com.br/PortalAssinatura/cdn/pca-signature.js")
     embeddedPortal_div.hidden = false;
+
+    
 }
