@@ -164,9 +164,8 @@ function addSubscriptionField() {
     // arquivo.setAttribute("id", buttonArquivoAssinanteID);
     arquivo.setAttribute("type", "file");
     arquivo.setAttribute("name", "arquivoAssinatura");
-    arquivo.setAttribute("accept", ".png");
-    arquivo.setAttribute("accept", ".jpg");
-    arquivo.setAttribute("accept", ".jpeg");
+    arquivo.setAttribute("accept", ".jpg ,.png,.pdf");
+
 
     // arquivo_path.setAttribute("id", textArquivoAssinanteID)
 
