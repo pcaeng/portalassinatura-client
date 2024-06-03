@@ -108,12 +108,6 @@ const handleSubmit = () => {
       
       AddSignature(dadosCriacaoAssinatura)
         .then((resp) => {
-          document.getElementById('loading').style.display = 'none';
-          document.getElementById('Btnassinatura').style.display = 'flex';
-          
-          
-          
-          
             console.log(dadosCriacaoAssinatura);
 
             console.log('Assinatura adicionada com sucesso');
@@ -145,9 +139,16 @@ const handleSubmit = () => {
                   console.log('Status da assinatura alterado para requisitado');
 
                   if (dadosCriacaoAssinatura.signature.place == 'SignaturePortal') {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('Btnassinatura').style.display = 'flex';
                     alert('Assinatura adicionada com sucesso');
+
+                   
                   } else {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('Btnassinatura').style.display = 'flex';
                     alert('Assinatura adicionada com sucesso');
+                  
                     showEmbeddedPortal(signatureId, dadosCriacaoAssinatura.customers.length, dadosCriacaoAssinatura.customers[0].cpf, dadosCriacaoAssinatura.customers[0].birthdate);
                   }
                 })
