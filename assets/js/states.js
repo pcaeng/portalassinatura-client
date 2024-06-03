@@ -99,6 +99,9 @@ const handleSubmit = () => {
   const dadosFormularios = obterDadosFormularios();
 
   const dadosCriacaoAssinatura = obterDadosCriacaoAssinatura(dadosFormularios);
+  dadosCriacaoAssinatura.customers.forEach(customer => {
+    customer.cpf = customer.cpf.replace(/\D/g, ''); // Remove qualquer coisa que não seja um dígito
+  });
 
   Authenticate('gitdemonstracao.03082023')
     .then(() => {

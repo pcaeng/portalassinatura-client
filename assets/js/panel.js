@@ -36,7 +36,7 @@ function confirmarDocumentos() {
     document.getElementById('loading').style.display = 'flex';
     document.getElementById('Btnassinatura').style.display = 'none';
     
-    debugger
+    
     const form = document.getElementById('assinaturas_form');
     const invalidFields = [];
     
@@ -63,7 +63,7 @@ function confirmarDocumentos() {
       document.getElementById('Btnassinatura').style.display = 'flex';
     } else {
       
-      setTimeout(handleSubmit, 1000);// Substitua por sua função para iniciar o processo de assinatura
+      setTimeout(handleSubmit(), 1000);// Substitua por sua função para iniciar o processo de assinatura
     }
   }
 function showSettings() {
