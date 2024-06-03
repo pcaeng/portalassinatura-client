@@ -92,6 +92,7 @@ function obterDadosCriacaoAssinatura(dadosFormularios) {
   return dadosCriacaoAssinatura;
 }
 
+
 // Função executada ao iniciar a assinatura
 const handleSubmit = () => {
 
@@ -101,13 +102,15 @@ const handleSubmit = () => {
 
   Authenticate('gitdemonstracao.03082023')
     .then(() => {
+      
       AddSignature(dadosCriacaoAssinatura)
         .then((resp) => {
-          if (resp.success == false) {
-            alert('Preencha todos os campos antes de iniciar a assinatura.');
-            voltarParaPrimeiroPainel();
-          }
-          else {
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('Btnassinatura').style.display = 'flex';
+          
+          
+          
+          
             console.log(dadosCriacaoAssinatura);
 
             console.log('Assinatura adicionada com sucesso');
@@ -149,13 +152,17 @@ const handleSubmit = () => {
                   console.log('Falha ao atualizar o status da assinatura');
                 });
             })
-          }
+          
         })
         .catch((err) => {
-          console.log('Falha ao adicionar a assinatura, verifique as informações que estão sendo enviadas');
+          alert('Falha ao adicionar a assinatura, verifique as informações que estão sendo enviadas');
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('Btnassinatura').style.display = 'flex';
         });
     })
     .catch((err) => {
-      console.log('Autenticação falhou, verifique a credencial do método de autenticação');
+      alert('Autenticação falhou, verifique a credencial do método de autenticação');
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('Btnassinatura').style.display = 'flex';
     });
 };

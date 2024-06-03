@@ -137,7 +137,46 @@ function removerLinhaDocumentos(e) {
     qtdDocumentos--;
     row.remove();
 }
+function formatarCpf(documento) {
+    let valor = documento.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
+    // Limita o CPF a 11 dígitos
+    if (valor.length > 11) {
+      valor = valor.substr(0, 11);
+    }
+
+    // Formata o CPF
+    valor = valor.replace(/^(\d{3})(\d)/, '$1.$2'); // Adiciona ponto após os 3 primeiros dígitos
+    valor = valor.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3'); // Adiciona ponto após os próximos 3 dígitos
+    valor = valor.replace(/\.(\d{3})(\d)/, '.$1-$2'); // Adiciona traço após os próximos 3 dígitos
+
+    // Atualiza o valor do campo de entrada
+    documento.value = valor;
+  }
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('cus-birth0');
+    
+    dateInput.addEventListener('focus', function() {
+      this.type = 'date';
+    });
+  
+    dateInput.addEventListener('blur', function() {
+      if (this.value === '') {
+        this.type = 'text';
+      }
+    });
+  
+    dateInput.addEventListener('input', function() {
+      if (this.value !== '') {
+        this.setAttribute('data-value', this.value);
+      } else {
+        this.removeAttribute('data-value');
+      }
+    });
+  
+    dateInput.type = 'text'; // Inicializa o campo como texto para mostrar o placeholder
+  });
+  
 function obterDadosDocumentos() {
     
     const formElements = document.forms["documentos_form"].elements;
