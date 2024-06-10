@@ -59,3 +59,11 @@
     justify-content: space-between;
     align-items: center;
 }
+.invalid {
+    background-color: #ffe6e6; /* Cor de fundo vermelha */
+  }
+  
+  .error-message {
+    text-align: center;
+    font-size: 14px;
+  }

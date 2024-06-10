@@ -92,6 +92,8 @@
                         </option>
                       </select>
                     </label>
+                    <p class="error-message" data-field="doc-name"></p>
+
                   </div>
 
                   <!-- Descrição do documento -->
@@ -100,6 +102,7 @@
                       <input id="doc-desc0" class="input-primary" name="description"
                         placeholder="Descrição do documento" required />
                     </label>
+                    <p class="error-message" data-field="doc-desc"></p>
                   </div>
 
                   <!-- Selecione o arquivo -->
@@ -109,6 +112,7 @@
                       <input id="doc-fileName0" class="d-none" name="arquivoDocumento" type="file" accept=".pdf"
                         required />
                     </label>
+                    <p class="error-message" data-field="doc-fileName"></p>
                     <!-- Legenda com o nome do arquivo -->
                     <p id="doc-fileName0-value" class="file-button-text"></p>
                   </div>
@@ -157,6 +161,7 @@
                       <input id="cus-name0" class="input-primary" name="name" placeholder="Nome do assinante"
                         required />
                     </label>
+                    <p class="error-message" data-field="cus-name"></p>
                   </div>
 
                   <!-- E-mail do assinante -->
@@ -165,15 +170,18 @@
                       <input id="cus-email0" class="input-primary" name="email" placeholder="E-mail do assinante"
                         required />
                     </label>
+                    <p class="error-message" data-field="cus-email"></p>
                   </div>
 
                   <!-- CPF do assinante -->
                   <div class="col-md-4 default-padding">
                     <label class="cpf-icon" for="cus-cpf0">
                       <input id="cus-cpf0" class="input-primary" name="cpf" placeholder="CPF do assinante" required
-                        oninput="formatarCpf(this)" />
+                        oninput="formatarCpf(this); validarCpfInput(this);" />
                     </label>
+                    <p class="error-message" data-field="cus-cpf"></p>
                   </div>
+
                 </div>
 
                 <!-- Segunda linha -->
@@ -182,8 +190,9 @@
                   <div class="col-md-4 default-padding">
                     <label class="calendar-icon" for="cus-birth0">
                       <input id="cus-birth0" class="input-primary" name="birthdate" type="text"
-                        placeholder="Data de nascimento" required />
+                        placeholder="Data de nascimento" required lang="pt-BR" />
                     </label>
+                    <p class="error-message" data-field="cus-birth"></p>
                   </div>
 
                   <!-- Nome do documento do assinante -->
@@ -196,6 +205,7 @@
                         <option value="CNH">CNH</option>
                       </select>
                     </label>
+                    <p class="error-message" data-field="cus-tipo"></p>
                   </div>
 
                   <!-- Parte do assinante -->
@@ -203,15 +213,17 @@
                     <label class="document-icon" for="cus-party0">
                       <select id="cus-party0" class="input-primary" name="partyId"></select>
                     </label>
+                    <p class="error-message" data-field="cus-party"></p>
                   </div>
 
                   <!-- Selecione o arquivo -->
                   <div class="col-md-4 default-padding">
                     <label class="file-button" for="sub-fileName0">
-                      Selecione o arquivo
+                      Selecione o documento com foto
                       <input id="sub-fileName0" class="d-none" name="arquivoAssinatura" type="file"
                         placeholder="Selecione um arquivo" accept=".jpg, .png, .pdf" required />
                     </label>
+                    <p class="error-message" data-field="cus-arquivo"></p>
                   </div>
 
                   <!-- Legenda com o nome do arquivo -->
@@ -220,8 +232,8 @@
                   </div>
 
                   <!-- Botão de adicionar [+] -->
-                  <div class="col-md-4 default-padding d-flex justify-content-end" onclick="addSubscriptionField()">
-                    <i class="add-icon"></i>
+                  <div class="col-md-4 default-padding d-flex justify-content-end">
+                    <i class="add-icon" onclick="addSubscriptionField()"></i>
                   </div>
                 </div>
               </div>

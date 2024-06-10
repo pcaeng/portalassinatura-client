@@ -43,6 +43,8 @@ function adicionarLinhaDocumentos() {
     const lessIcon_div = document.createElement("div");
     const lessIcon = document.createElement("i");
 
+    // Adicionar a mensagem de erro à hierarquia DOM
+
     //Adicionando a classe 'row' para a div
     row.classList.add("row");
 
@@ -124,10 +126,31 @@ function adicionarLinhaDocumentos() {
     row.appendChild(addIcon_div);
     row.appendChild(lessIcon_div);
 
+    const errorMessageSelect = document.createElement("p");
+    errorMessageSelect.classList.add("error-message");
+    errorMessageSelect.setAttribute("data-field", "doc-name");
+    errorMessageSelect.innerText = ""; // Defina a mensagem de erro como vazia inicialmente
+    nomeDocumento_div.appendChild(errorMessageSelect); 
+    // Adicionar a criação do elemento de mensagem de erro para o campo "Descrição do documento"
+    const errorMessageDescricao = document.createElement("p");
+    errorMessageDescricao.classList.add("error-message");
+    errorMessageDescricao.setAttribute("data-field", "doc-desc");
+    errorMessageDescricao.innerText = ""; // Defina a mensagem de erro como vazia inicialmente
+    descricaoDocumento_div.appendChild(errorMessageDescricao); // Adicionar a mensagem de erro à hierarquia DOM
+
+    // Adicionar a criação do elemento de mensagem de erro para o campo "Selecione o arquivo"
+    const errorMessageArquivo = document.createElement("p");
+    errorMessageArquivo.classList.add("error-message");
+    errorMessageArquivo.setAttribute("data-field", "doc-fileName");
+    errorMessageArquivo.innerText = ""; // Defina a mensagem de erro como vazia inicialmente
+    arquivo_div.appendChild(errorMessageArquivo); 
+    
     //Inserir os elementos no DOM
     form_documentos.appendChild(row);
 
     lessIcon_div.addEventListener("click", removerLinhaDocumentos);
+    
+
 }
 
 function removerLinhaDocumentos(e) {

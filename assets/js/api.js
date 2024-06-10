@@ -1,4 +1,4 @@
-const baseUrl = 'https://stage3.pca.com.br/PortalAssinatura/api';
+const baseUrl = 'https://localhost:7178';
 
 var accessToken = '';
 

@@ -31,6 +31,115 @@ carregaOptionsParty().then((result) => {
     parties = result;
 });
 
+function formatarCpf(documento) {
+    let valor = documento.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+
+    // Limita o CPF a 11 dígitos
+    if (valor.length > 11) {
+      valor = valor.substr(0, 11);
+    }
+
+    // Formata o CPF
+    valor = valor.replace(/^(\d{3})(\d)/, '$1.$2'); // Adiciona ponto após os 3 primeiros dígitos
+    valor = valor.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3'); // Adiciona ponto após os próximos 3 dígitos
+    valor = valor.replace(/\.(\d{3})(\d)/, '.$1-$2'); // Adiciona traço após os próximos 3 dígitos
+
+    // Atualiza o valor do campo de entrada
+    documento.value = valor;
+  }
+  function validarCpf(cpf) {
+    // Remove todos os caracteres que não são números
+    
+    cpf = cpf.replace(/\D/g, '');
+    
+    // Verifica se o CPF tem 11 dígitos
+    if (cpf.length !== 11) return false;
+    
+    // Verifica se todos os dígitos são iguais (isso é considerado um CPF inválido)
+    const allDigitsAreSame = cpf.split('').every((digit, index, array) => digit === array[0]);
+    if (allDigitsAreSame) return false;
+    
+    // Calcula o primeiro dígito verificador
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        sum += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let firstDigit = sum % 11;
+    if (firstDigit < 2) {
+        firstDigit = 0;
+    } else {
+        firstDigit = 11 - firstDigit;
+    }
+    
+    // Verifica se o primeiro dígito verificador está correto
+    if (parseInt(cpf.charAt(9)) !== firstDigit) return false;
+    
+    // Calcula o segundo dígito verificador
+    sum = 0;
+    for (let i = 0; i < 10; i++) {
+        sum += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    let secondDigit = sum % 11;
+    if (secondDigit < 2) {
+        secondDigit = 0;
+    } else {
+        secondDigit = 11 - secondDigit;
+    }
+    
+    // Verifica se o segundo dígito verificador está correto
+    if (parseInt(cpf.charAt(10)) !== secondDigit) return false;
+    
+    // Se chegou até aqui, o CPF é válido
+    return true;
+}
+
+function validarCpfInput(input) {
+    const cpf = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    const errorMessage = input.parentElement.nextElementSibling; // Seleciona o elemento de mensagem de erro
+    if (validarCpf(cpf)) {
+        errorMessage.innerText = ''; // Se o CPF for válido, limpa a mensagem de erro
+    } else {
+        errorMessage.innerText = 'CPF inválido'; // Se o CPF for inválido, exibe uma mensagem de erro
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('cus-birth0');
+    const errorMessage = document.querySelector('[data-field="cus-birth"]');
+    
+    dateInput.addEventListener('focus', function() {
+        this.type = 'date';
+    });
+  
+    dateInput.addEventListener('blur', function() {
+        if (this.value === '') {
+            this.type = 'text';
+        }
+    });
+  
+    dateInput.addEventListener('input', function() {
+        if (this.value !== '') {
+            this.setAttribute('data-value', this.value);
+        } else {
+            this.removeAttribute('data-value');
+        }
+    });
+  
+    dateInput.type = 'text'; // Inicializa o campo como texto para mostrar o placeholder
+  
+    dateInput.addEventListener('change', function() {
+        const selectedDate = new Date(this.value);
+        const currentDate = new Date();
+  
+        if (selectedDate > currentDate) {
+            errorMessage.innerText = "A data de nascimento não pode ser futura.";
+            this.value = ''; // Limpa o valor do campo
+        } else {
+            errorMessage.innerText = ''; // Limpa a mensagem de erro se a data for válida
+        }
+    });
+});
+
+
 function addSubscriptionField() {
 
     qtdAssinantes++;
@@ -237,6 +346,63 @@ function addSubscriptionField() {
     container.appendChild(firstRow);
     container.appendChild(secondRow);
 
+    cpfAssinante.addEventListener("input", function() {
+        formatarCpf(this);
+        validarCpfInput(this); // Chamando a função de validação
+    });
+    dataNascimento.addEventListener('change', function() {
+        const selectedDate = new Date(this.value);
+        const today = new Date();
+        
+        // Verifica se a data selecionada é no futuro
+        if (selectedDate > today) {
+            errorMessageBirth.innerText = "A data de nascimento não pode ser futura.";
+            this.value = ''; // Limpa o valor do campo
+        } else {
+            errorMessageBirth.innerText = ''; // Limpa a mensagem de erro
+        }
+    });
+    const errorMessageName = document.createElement("p");
+    errorMessageName.classList.add("error-message");
+    errorMessageName.setAttribute("data-field", "cus-name");
+    errorMessageName.innerText = ""; // Inicialmente vazio
+    nomeAssinante_div.appendChild(errorMessageName);
+
+    const errorMessageEmail = document.createElement("p");
+    errorMessageEmail.classList.add("error-message");
+    errorMessageEmail.setAttribute("data-field", "cus-email");
+    errorMessageEmail.innerText = ""; // Inicialmente vazio
+    emailAssinante_div.appendChild(errorMessageEmail);
+
+    const errorMessageCpf = document.createElement("p");
+    errorMessageCpf.classList.add("error-message");
+    errorMessageCpf.setAttribute("data-field", "cus-cpf");
+    errorMessageCpf.innerText = ""; // Inicialmente vazio
+    cpfAssinante_div.appendChild(errorMessageCpf);
+   
+    const errorMessageBirth = document.createElement("p");
+    errorMessageBirth.classList.add("error-message");
+    errorMessageBirth.setAttribute("data-field", "cus-birth");
+    errorMessageBirth.innerText = ""; // Inicialmente vazio
+    dataNascimento_div.appendChild(errorMessageBirth);
+
+    const errorMessageTipoDoc = document.createElement("p");
+    errorMessageTipoDoc.classList.add("error-message");
+    errorMessageTipoDoc.setAttribute("data-field", "cus-tipo");
+    errorMessageTipoDoc.innerText = ""; // Inicialmente vazio
+    nomeDocumentoAssinante_div.appendChild(errorMessageTipoDoc);
+
+    const errorMessageParty = document.createElement("p");
+    errorMessageParty.classList.add("error-message");
+    errorMessageParty.setAttribute("data-field", "cus-party");
+    errorMessageParty.innerText = ""; // Inicialmente vazio
+    parteAssinante_div.appendChild(errorMessageParty);
+
+    const errorMessageArquivo = document.createElement("p");
+    errorMessageArquivo.classList.add("error-message");
+    errorMessageArquivo.setAttribute("data-field", "cus-arquivo");
+    errorMessageArquivo.innerText = ""; // Inicialmente vazio
+    arquivo_div.appendChild(errorMessageArquivo);
     //Inserir os elementos no DOM
     form_assinaturas.append(container);
 
