@@ -233,7 +233,17 @@ function addSubscriptionField() {
     dataNascimento.classList.add("input-primary");
 
     dataNascimento.setAttribute("name", "birthdate");
-    dataNascimento.setAttribute("type", "date");
+    dataNascimento.setAttribute("type", "text");
+    dataNascimento.setAttribute("placeholder", "data de nascimento");
+    dataNascimento.addEventListener('focus', function() {
+        this.type = 'date';
+    });
+
+    dataNascimento.addEventListener('blur', function() {
+        if (this.value === '') {
+            this.type = 'text';
+        }
+    });
     // dataNascimento.setAttribute("id", birthdateAssinanteID);
 
     //Adicionando classes e propriedades para o campo "Nome do documento"
@@ -278,7 +288,7 @@ function addSubscriptionField() {
 
     // arquivo_path.setAttribute("id", textArquivoAssinanteID)
 
-    arquivo_label.innerText = "Selecione o arquivo";
+    arquivo_label.innerText = "Selecione o documento com foto";
 
     arquivo.onchange = function () {
         arquivo_path.innerText = arquivo.files[0].name;
@@ -345,7 +355,8 @@ function addSubscriptionField() {
     container.appendChild(br);
     container.appendChild(firstRow);
     container.appendChild(secondRow);
-
+    
+    
     cpfAssinante.addEventListener("input", function() {
         formatarCpf(this);
         validarCpfInput(this); // Chamando a função de validação
