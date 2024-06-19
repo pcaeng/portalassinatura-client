@@ -105,31 +105,15 @@ function validarCpfInput(input) {
 document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('cus-birth0');
     const errorMessage = document.querySelector('[data-field="cus-birth"]');
-    
-    dateInput.addEventListener('focus', function() {
-        this.type = 'date';
-    });
-  
-    dateInput.addEventListener('blur', function() {
-        if (this.value === '') {
-            this.type = 'text';
-        }
-    });
-  
-    dateInput.addEventListener('input', function() {
-        if (this.value !== '') {
-            this.setAttribute('data-value', this.value);
-        } else {
-            this.removeAttribute('data-value');
-        }
-    });
-  
-    dateInput.type = 'text'; // Inicializa o campo como texto para mostrar o placeholder
-  
+
     dateInput.addEventListener('change', function() {
-        const selectedDate = new Date(this.value);
+        
+        const selectedDateStr = this.value; // Valor do campo de data no formato "28/06/2024"
+        const selectedDateParts = selectedDateStr.split('/'); // Divide a string pela barra para obter dia, mês e ano
+        const selectedDate = new Date(selectedDateParts[2], selectedDateParts[1] - 1, selectedDateParts[0]); // Cria um objeto Date com ano, mês e dia
+
         const currentDate = new Date();
-  
+
         if (selectedDate > currentDate) {
             errorMessage.innerText = "A data de nascimento não pode ser futura.";
             this.value = ''; // Limpa o valor do campo
@@ -235,14 +219,10 @@ function addSubscriptionField() {
     dataNascimento.setAttribute("name", "birthdate");
     dataNascimento.setAttribute("type", "text");
     dataNascimento.setAttribute("placeholder", "data de nascimento");
-    dataNascimento.addEventListener('focus', function() {
-        this.type = 'date';
-    });
-
-    dataNascimento.addEventListener('blur', function() {
-        if (this.value === '') {
-            this.type = 'text';
-        }
+    flatpickr(dataNascimento, {
+        dateFormat: 'd/m/Y',
+        locale: 'pt',
+        // Configurações adicionais do Flatpickr aqui, se necessário
     });
     // dataNascimento.setAttribute("id", birthdateAssinanteID);
 
@@ -362,17 +342,22 @@ function addSubscriptionField() {
         validarCpfInput(this); // Chamando a função de validação
     });
     dataNascimento.addEventListener('change', function() {
-        const selectedDate = new Date(this.value);
+        const selectedDateStr = this.value;
+        debugger
+        const selectedDateParts = selectedDateStr.split('/'); 
+        const selectedDate = new Date(selectedDateParts[2], selectedDateParts[1] - 1, selectedDateParts[0]); 
+    
         const today = new Date();
-        
-        // Verifica se a data selecionada é no futuro
+    
         if (selectedDate > today) {
             errorMessageBirth.innerText = "A data de nascimento não pode ser futura.";
-            this.value = ''; // Limpa o valor do campo
+            this.value = ''; 
         } else {
-            errorMessageBirth.innerText = ''; // Limpa a mensagem de erro
+            errorMessageBirth.innerText = ''; 
+            dataNascimento.classList.remove('invalid');
         }
     });
+    
     const errorMessageName = document.createElement("p");
     errorMessageName.classList.add("error-message");
     errorMessageName.setAttribute("data-field", "cus-name");
@@ -432,19 +417,7 @@ function addSubscriptionField() {
         cpfAssinante.classList.remove('invalid');
     });
 
-    dataNascimento.addEventListener("change", function() {
-        const selectedDate = new Date(this.value);
-        const today = new Date();
-        
-        // Verifica se a data selecionada é no futuro
-        if (selectedDate > today) {
-            errorMessageBirth.innerText = "A data de nascimento não pode ser futura.";
-            this.value = ''; // Limpa o valor do campo
-        } else {
-            errorMessageBirth.innerText = ''; // Limpa a mensagem de erro
-            dataNascimento.classList.remove('invalid');
-        }
-    });
+    
 
     nomeDocumentoAssinante.addEventListener("change", function() {
         errorMessageTipoDoc.innerText = "";

@@ -199,29 +199,29 @@ function formatarCpf(documento) {
     // Atualiza o valor do campo de entrada
     documento.value = valor;
   }
-document.addEventListener('DOMContentLoaded', function() {
-    const dateInput = document.getElementById('cus-birth0');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const dateInput = document.getElementById('cus-birth0');
     
-    dateInput.addEventListener('focus', function() {
-      this.type = 'date';
-    });
+//     dateInput.addEventListener('focus', function() {
+//       this.type = 'date';
+//     });
   
-    dateInput.addEventListener('blur', function() {
-      if (this.value === '') {
-        this.type = 'text';
-      }
-    });
+//     dateInput.addEventListener('blur', function() {
+//       if (this.value === '') {
+//         this.type = 'text';
+//       }
+//     });
   
-    dateInput.addEventListener('input', function() {
-      if (this.value !== '') {
-        this.setAttribute('data-value', this.value);
-      } else {
-        this.removeAttribute('data-value');
-      }
-    });
+//     dateInput.addEventListener('input', function() {
+//       if (this.value !== '') {
+//         this.setAttribute('data-value', this.value);
+//       } else {
+//         this.removeAttribute('data-value');
+//       }
+//     });
   
-    dateInput.type = 'text'; // Inicializa o campo como texto para mostrar o placeholder
-  });
+//     dateInput.type = 'text'; // Inicializa o campo como texto para mostrar o placeholder
+//   });
   
 function obterDadosDocumentos() {
     

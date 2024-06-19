@@ -282,7 +282,7 @@ function validarAssinaturas() {
 }
 
 function confirmarAssinaturas() {
-  debugger
+  
   if (validarAssinaturas()) {
     const cpfInputs = document.getElementsByName('cpf');
   for (let i = 0; i < cpfInputs.length; i++) {
