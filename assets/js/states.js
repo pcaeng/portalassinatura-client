@@ -96,12 +96,19 @@ function obterDadosCriacaoAssinatura(dadosFormularios) {
 // Função executada ao iniciar a assinatura
 const handleSubmit = () => {
 
+  debugger
+  function formatarDataParaBackend(data) {
+    const parts = data.split('/'); // Divide a string pela barra para obter dia, mês e ano
+    const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // Formata para "YYYY-MM-DD"
+    return formattedDate;
+}
   const dadosFormularios = obterDadosFormularios();
-
+  
   const dadosCriacaoAssinatura = obterDadosCriacaoAssinatura(dadosFormularios);
   dadosCriacaoAssinatura.customers.forEach(customer => {
     customer.cpf = customer.cpf.replace(/\D/g, ''); // Remove qualquer coisa que não seja um dígito
-  });
+    customer.birthdate = formatarDataParaBackend(customer.birthdate); // Formata a data de nascimento
+});
 
   Authenticate('gitdemonstracao.03082023')
     .then(() => {

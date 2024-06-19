@@ -287,11 +287,7 @@ function confirmarAssinaturas() {
     const cpfInputs = document.getElementsByName('cpf');
   for (let i = 0; i < cpfInputs.length; i++) {
     const cpf = cpfInputs[i].value; 
-
-   
-    if (!validarCpf(cpf)) {
-      
-      
+    if (!validarCpf(cpf)) {  
       return; 
     }
   }
