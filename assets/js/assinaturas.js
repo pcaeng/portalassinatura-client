@@ -415,6 +415,52 @@ function addSubscriptionField() {
     errorMessageArquivo.innerText = ""; // Inicialmente vazio
     arquivo_div.appendChild(errorMessageArquivo);
     //Inserir os elementos no DOM
+    nomeAssinante.addEventListener("input", function() {
+        errorMessageName.innerText = "";
+        nomeAssinante.classList.remove('invalid');
+    });
+   
+    emailAssinante.addEventListener("input", function() {
+        errorMessageEmail.innerText = "";
+        emailAssinante.classList.remove('invalid');
+    });
+
+    cpfAssinante.addEventListener("input", function() {
+        formatarCpf(this);
+        validarCpfInput(this); // Chamando a função de validação
+        errorMessageCpf.innerText = "";
+        cpfAssinante.classList.remove('invalid');
+    });
+
+    dataNascimento.addEventListener("change", function() {
+        const selectedDate = new Date(this.value);
+        const today = new Date();
+        
+        // Verifica se a data selecionada é no futuro
+        if (selectedDate > today) {
+            errorMessageBirth.innerText = "A data de nascimento não pode ser futura.";
+            this.value = ''; // Limpa o valor do campo
+        } else {
+            errorMessageBirth.innerText = ''; // Limpa a mensagem de erro
+            dataNascimento.classList.remove('invalid');
+        }
+    });
+
+    nomeDocumentoAssinante.addEventListener("change", function() {
+        errorMessageTipoDoc.innerText = "";
+        nomeDocumentoAssinante.classList.remove('invalid');
+    });
+
+    parteAssinante.addEventListener("change", function() {
+        errorMessageParty.innerText = "";
+        parteAssinante.classList.remove('invalid');
+    });
+
+    arquivo.addEventListener("change", function() {
+        errorMessageArquivo.innerText = "";
+        arquivo.classList.remove('invalid');
+        arquivo_path.innerText = arquivo.files[0].name;
+    });
     form_assinaturas.append(container);
 
     lessIcon_div.addEventListener("click", removeSubscriptionField);

@@ -82,7 +82,8 @@
                   <!-- Nome do documento -->
                   <div class="col-md-4 default-padding">
                     <label class="document-icon">
-                      <select id="doc-name0" class="input-primary" name="type" placeholder="Nome do documento" required>
+                      <select id="doc-name0" class="input-primary" name="type" placeholder="Nome do documento" required
+                        title="">
                         <option value="">Selecione um documento</option>
                         <option value="Termo de adesão">
                           Termo de adesão
@@ -100,7 +101,7 @@
                   <div class="col-md-4 default-padding">
                     <label class="document-icon">
                       <input id="doc-desc0" class="input-primary" name="description"
-                        placeholder="Descrição do documento" required />
+                        placeholder="Descrição do documento" required title="" />
                     </label>
                     <p class="error-message" data-field="doc-desc"></p>
                   </div>
@@ -110,7 +111,7 @@
                     <label class="file-button">
                       Selecione o arquivo
                       <input id="doc-fileName0" class="d-none" name="arquivoDocumento" type="file" accept=".pdf"
-                        required />
+                        required title="" />
                     </label>
                     <p class="error-message" data-field="doc-fileName"></p>
                     <!-- Legenda com o nome do arquivo -->
@@ -158,8 +159,8 @@
                   <!-- Nome do assinante -->
                   <div class="col-md-4 default-padding">
                     <label class="user-icon" for="cus-name0">
-                      <input id="cus-name0" class="input-primary" name="name" placeholder="Nome do assinante"
-                        required />
+                      <input id="cus-name0" class="input-primary" name="name" placeholder="Nome do assinante" required
+                        title="" />
                     </label>
                     <p class="error-message" data-field="cus-name"></p>
                   </div>
@@ -168,7 +169,7 @@
                   <div class="col-md-4 default-padding">
                     <label class="email-icon" for="cus-email0">
                       <input id="cus-email0" class="input-primary" name="email" placeholder="E-mail do assinante"
-                        required />
+                        required title="" />
                     </label>
                     <p class="error-message" data-field="cus-email"></p>
                   </div>
@@ -177,7 +178,7 @@
                   <div class="col-md-4 default-padding">
                     <label class="cpf-icon" for="cus-cpf0">
                       <input id="cus-cpf0" class="input-primary" name="cpf" placeholder="CPF do assinante" required
-                        oninput="formatarCpf(this); validarCpfInput(this);" />
+                        oninput="formatarCpf(this); validarCpfInput(this);" title="" />
                     </label>
                     <p class="error-message" data-field="cus-cpf"></p>
                   </div>
@@ -190,7 +191,7 @@
                   <div class="col-md-4 default-padding">
                     <label class="calendar-icon" for="cus-birth0">
                       <input id="cus-birth0" class="input-primary" name="birthdate" type="text"
-                        placeholder="Data de nascimento" required lang="pt-BR" />
+                        placeholder="Data de nascimento" required lang="pt-BR" title="" />
                     </label>
                     <p class="error-message" data-field="cus-birth"></p>
                   </div>
@@ -198,7 +199,7 @@
                   <!-- Nome do documento do assinante -->
                   <div class="col-md-4 default-padding">
                     <label class="document-icon" for="cus-nameDoc0">
-                      <select id="cus-nameDoc0" class="input-primary" name="tipoDocumento" required>
+                      <select id="cus-nameDoc0" class="input-primary" name="tipoDocumento" required title="">
                         <option value="" disabled selected hidden>Selecione um documento</option>
                         <option value="RG">RG</option>
                         <option value="CPF">CPF</option>
@@ -211,7 +212,7 @@
                   <!-- Parte do assinante -->
                   <div class="col-md-4 default-padding">
                     <label class="document-icon" for="cus-party0">
-                      <select id="cus-party0" class="input-primary" name="partyId"></select>
+                      <select id="cus-party0" class="input-primary" name="partyId" title=""></select>
                     </label>
                     <p class="error-message" data-field="cus-party"></p>
                   </div>
@@ -221,7 +222,7 @@
                     <label class="file-button" for="sub-fileName0">
                       Selecione o documento com foto
                       <input id="sub-fileName0" class="d-none" name="arquivoAssinatura" type="file"
-                        placeholder="Selecione um arquivo" accept=".jpg, .png, .pdf" required />
+                        placeholder="Selecione um arquivo" accept=".jpg, .png, .pdf" required title="" />
                     </label>
                     <p class="error-message" data-field="cus-arquivo"></p>
                   </div>

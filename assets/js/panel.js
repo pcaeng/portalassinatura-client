@@ -24,10 +24,44 @@ function goToLastStep() {
     const lastStepElement = document.getElementById("panel-3");
     lastStepElement.hidden = false;
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var linhas = document.querySelectorAll('#documentos .row');
+
+  linhas.forEach(function(linha) {
+    var select = linha.querySelector('select');
+    var descricao = linha.querySelector('input[name="description"]');
+    var arquivo = linha.querySelector('input[type="file"]');
+    var errorMessageSelect = linha.querySelector('.error-message[data-field="doc-name"]');
+    var errorMessageDescricao = linha.querySelector('.error-message[data-field="doc-desc"]');
+    var errorMessageArquivo = linha.querySelector('.error-message[data-field="doc-fileName"]');
+
+    select.addEventListener('change', function() {
+      if (select.value) {
+        select.classList.remove('invalid');
+        errorMessageSelect.innerText = "";
+      }
+    });
+
+    descricao.addEventListener('input', function() {
+      if (descricao.value) {
+        descricao.classList.remove('invalid');
+        errorMessageDescricao.innerText = "";
+      }
+    });
+
+    arquivo.addEventListener('change', function() {
+      if (arquivo.value) {
+        arquivo.classList.remove('invalid');
+        errorMessageArquivo.innerText = "";
+      }
+    });
+  });
+});
+
 function validarFormulario() {
   var linhas = document.querySelectorAll('#documentos .row');
   var isValid = true;
- debugger
+
   for (var i = 0; i < linhas.length; i++) {
     var select = linhas[i].querySelector('select');
     var descricao = linhas[i].querySelector('input[name="description"]');
@@ -72,6 +106,87 @@ function confirmarDocumentos() {
     goToLastStep();  
   }
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var linhas = document.querySelectorAll('#assinaturas .row');
+
+  for (var i = 0; i < linhas.length; i += 2) {
+    var firstRow = linhas[i];
+    var secondRow = linhas[i + 1];
+
+    // Campos da primeira linha
+    var nameInput = firstRow.querySelector('input[name="name"]');
+    var emailInput = firstRow.querySelector('input[name="email"]');
+    var cpfInput = firstRow.querySelector('input[name="cpf"]');
+
+    // Campos da segunda linha
+    var birthdateInput = secondRow.querySelector('input[name="birthdate"]');
+    var tipoDocumentoSelect = secondRow.querySelector('select[name="tipoDocumento"]');
+    var partyselect = secondRow.querySelector('select[name="partyId"]');
+    var arquivoInput = secondRow.querySelector('input[name="arquivoAssinatura"]');
+
+    // Mensagens de erro da primeira linha
+    var errorMessageName = firstRow.querySelector('.error-message[data-field="cus-name"]');
+    var errorMessageEmail = firstRow.querySelector('.error-message[data-field="cus-email"]');
+    var errorMessageCpf = firstRow.querySelector('.error-message[data-field="cus-cpf"]');
+
+    // Mensagens de erro da segunda linha
+    var errorMessageBirth = secondRow.querySelector('.error-message[data-field="cus-birth"]');
+    var errorMessageTipo = secondRow.querySelector('.error-message[data-field="cus-tipo"]');
+    var errorMessageParty = secondRow.querySelector('.error-message[data-field="cus-party"]');
+    var errorMessageArquivo = secondRow.querySelector('.error-message[data-field="cus-arquivo"]');
+
+    // Adiciona ouvintes de eventos para os campos da primeira linha
+    nameInput.addEventListener('input', function() {
+      if (nameInput.value) {
+        nameInput.classList.remove('invalid');
+        errorMessageName.innerText = "";
+      }
+    });
+
+    emailInput.addEventListener('input', function() {
+      if (emailInput.value) {
+        emailInput.classList.remove('invalid');
+        errorMessageEmail.innerText = "";
+      }
+    });
+
+    cpfInput.addEventListener('input', function() {
+      if (cpfInput.value) {
+        cpfInput.classList.remove('invalid');
+        errorMessageCpf.innerText = "";
+      }
+    });
+
+    // Adiciona ouvintes de eventos para os campos da segunda linha
+    birthdateInput.addEventListener('input', function() {
+      if (birthdateInput.value) {
+        birthdateInput.classList.remove('invalid');
+        errorMessageBirth.innerText = "";
+      }
+    });
+
+    tipoDocumentoSelect.addEventListener('change', function() {
+      if (tipoDocumentoSelect.value) {
+        tipoDocumentoSelect.classList.remove('invalid');
+        errorMessageTipo.innerText = "";
+      }
+    });
+
+    partyselect.addEventListener('change', function() {
+      if (partyselect.value) {
+        partyselect.classList.remove('invalid');
+        errorMessageParty.innerText = "";
+      }
+    });
+
+    arquivoInput.addEventListener('change', function() {
+      if (arquivoInput.value) {
+        arquivoInput.classList.remove('invalid');
+        errorMessageArquivo.innerText = "";
+      }
+    });
+  }
+});
 function validarAssinaturas() {
   var linhas = document.querySelectorAll('#assinaturas .row');
   var isValid = true;
