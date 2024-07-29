@@ -18,7 +18,7 @@ Como requisito para que o portal de assinatura integrado funcione, primeiramente
 ```
 <script
     defer="defer"
-    src="https://stage3.pca.com.br/PortalAssinatura/cdn/pca-signature.js"
+    src="https://signaturecdn.stageapp05.pca.com.br/pca-signature.js"
 ></script>
 ```
 

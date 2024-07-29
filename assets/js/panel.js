@@ -329,7 +329,7 @@ function showEmbeddedPortal(signatureId, length, cpf, birthdate) {
     }  
 
     const script = document.createElement("script");
-    script.src = "https://stage3.pca.com.br/PortalAssinatura/cdn/pca-signature.js";
+    script.src = "https://signaturecdn.stageapp05.pca.com.br/pca-signature.js";
     script.defer = true;
 
     script.onload = function() {

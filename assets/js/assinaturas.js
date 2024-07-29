@@ -343,7 +343,6 @@ function addSubscriptionField() {
     });
     dataNascimento.addEventListener('change', function() {
         const selectedDateStr = this.value;
-        debugger
         const selectedDateParts = selectedDateStr.split('/'); 
         const selectedDate = new Date(selectedDateParts[2], selectedDateParts[1] - 1, selectedDateParts[0]); 
     
