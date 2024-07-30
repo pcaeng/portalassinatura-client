@@ -1,4 +1,4 @@
-const baseUrl = 'https://signatureapi.stageapp05.pca.com.br';
+const baseUrl = 'https://stage01.pca.com.br/PCASignature';
 
 var accessToken = '';
 
